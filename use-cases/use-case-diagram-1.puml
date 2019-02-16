@@ -1,0 +1,72 @@
+@startuml
+left to right direction
+skinparam packageStyle rect
+actor :Programmer: as prog
+actor :User: as user
+
+user -up-> prog : Submits request
+rectangle Database
+rectangle "Project"{
+
+    usecase UC1 as "Get population data from those living
+     in citys and those living outwith citys
+    in each continent/region/country"
+
+    usecase UC2 as "Gets top N  populated capital cities in
+     the world/continent/region"
+
+     usecase UC3 as "Gets all capital citys in the world/continent/region
+      organised by largest population to smallest."
+
+     usecase UC4 as "Gets top N populated cities in the
+      world/continent/country/region/district"
+
+     usecase UC5 as "Gets all the cities in the
+     world/continent/region/country/district
+     organised by largest population
+     to smallest."
+
+     usecase UC6 as "Gets the top N populated countries
+     in the world/continent/region where
+     N is provided by the user"
+
+     usecase UC7 as "Gets all the countries in
+     the world/continent/region
+     from largest to smallest."
+
+    usecase Print as "Print reports"
+
+    prog -> UC1
+    Database -up-> UC1
+    UC1 ..> Print : Include
+
+    prog -> UC2
+    Database -up-> UC2
+    user .-> UC2 : Provides N
+    UC2 ..> Print : Include
+
+    prog -> UC3
+    Database -up-> UC3
+    UC3 ..> Print : Include
+
+    prog -> UC4
+    Database -up-> UC4
+    user .-> UC4 : Provides N
+    UC4 ..> Print : Include
+
+    prog -> UC5
+    Database -up-> UC5
+    UC5 ..> Print : Include
+
+    prog -> UC6
+    Database -up-> UC6
+    user .-> UC6 : Provides N
+    UC6 ..> Print : Include
+
+    prog -> UC7
+    Database -up-> UC7
+    UC7 ..> Print : Include
+
+
+}
+@enduml
