@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As a programmer I want a report on the population of people, people living in cities, and people not living in cities in each continent/region/country
+As a researcher I want a report on the population of people, people living in cities, and people not living in cities in each continent/region/country
 
 ### Scope
 
@@ -28,7 +28,7 @@ No report is produced.
 
 ### Primary Actor
 
-Programmer.
+Researcher.
 
 ### Trigger
 

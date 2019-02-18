@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As a programmer I want a report on the top N populated countries in the world/continent/region where N is provided by the user.
+As a Researcher I want a report on the top N populated countries in the world/continent/region where N is provided by the user.
 
 ### Scope
 
@@ -28,7 +28,7 @@ No report is produced.
 
 ### Primary Actor
 
-Programmer.
+Researcher.
 
 ### Trigger
 

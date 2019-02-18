@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As a programmer, I want a report on all the countries in the world/a continent/ a region from largest to smallest.
+As a Researcher, I want a report on all the countries in the world/a continent/ a region from largest to smallest.
 
 ### Scope
 
@@ -28,7 +28,7 @@ No report is produced.
 
 ### Primary Actor
 
-Programmer.
+Researcher.
 
 ### Trigger
 

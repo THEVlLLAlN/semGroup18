@@ -1,7 +1,7 @@
 @startuml
 left to right direction
 skinparam packageStyle rect
-actor :Programmer: as prog
+actor :Researcher: as prog
 actor :User: as user
 
 user -up-> prog : Submits request
