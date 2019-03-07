@@ -62,7 +62,7 @@ public class App
                 c.setPopulation(resultset.getInt("city.Population"));
                 cities.add(c);
             }
-            System.out.println(Arrays.toString(cities.toArray()));
+
             return cities;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -97,7 +97,7 @@ public class App
                 c.setCapital(resultset.getInt("country.Capital"));
                 countries.add(c);
             }
-            System.out.println(Arrays.toString(countries.toArray()));
+
             return countries;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -130,7 +130,7 @@ public class App
                 c.setPopulation(resultset.getInt("city.Population"));
                 cities.add(c);
             }
-            System.out.println(Arrays.toString(cities.toArray()));
+
             return cities;
 
         } catch (Exception e) {
