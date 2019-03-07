@@ -15,11 +15,25 @@ public class AppIntegrationTest
     static void init()
     {
         app = new App();
-        app.connect("localhost:33060");
     }
 
     @Test
-    void countryTest() {
+    void countrylanguageTest() {
+        countrylanguage countrylanguageA = new countrylanguage();
+
+        countrylanguageA.setCountryCode("Dr Eggman");
+        assertEquals(countrylanguageA.getCountryCode(), "Dr Eggman");
+
+        countrylanguageA.setLanguage("Eggish");
+        assertEquals(countrylanguageA.getLanguage(), "Eggish");
+
+        countrylanguageA.setIsOfficial('E');
+        assertEquals(countrylanguageA.getIsOfficial(), 'E');
+
+        countrylanguageA.setPercentage(100);
+        assertEquals(countrylanguageA.getPercentage(), 100);
+
+
 
     }
 }
