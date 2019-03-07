@@ -15,58 +15,11 @@ public class AppIntegrationTest
     static void init()
     {
         app = new App();
-        app.connect("db");
+        app.connect("localhost:33060");
     }
 
     @Test
     void countryTest() {
-
-        country countryA = new country();
-
-        countryA.setCode("XD");
-        assertEquals(countryA.getCode(), "XD");
-
-        countryA.setName("Jon Callahan");
-        assertEquals(countryA.getName(), "Jon Callahan");
-
-        countryA.setContinent("Irozan");
-        assertEquals(countryA.getContinent(), "Irozan");
-
-        countryA.setRegion("asujas");
-        assertEquals(countryA.getRegion(), "asujas");
-
-        countryA.setIndepYear(2012);
-        assertEquals(countryA.getIndepYear(), 2012);
-
-        countryA.setSurfaceArea(12345);
-        assertEquals(countryA.getSurfaceArea(), 12345);
-
-        countryA.setPopulation(450000);
-        assertEquals(countryA.getPopulation(), 450000);
-
-        countryA.setLifeExpectancy(12345);
-        assertEquals(countryA.getLifeExpectancy(), 12345);
-
-        countryA.setGNP(12345);
-        assertEquals(countryA.getGNP(), 12345);
-
-        countryA.setGNPOld(12345);
-        assertEquals(countryA.getGNPOld(), 12345);
-
-        countryA.setLocalName("ASDf");
-        assertEquals(countryA.getLocalName(), "ASDf");
-
-        countryA.setGovernmentForm("Democracy");
-        assertEquals(countryA.getGovernmentForm(), "Democracy");
-
-        countryA.setHeadOfState("Dr Eggman");
-        assertEquals(countryA.getHeadOfState(), "Dr Eggman");
-
-        countryA.setCapital(123);
-        assertEquals(countryA.getCapital(), 123);
-
-        countryA.setCode2("Uwu");
-        assertEquals(countryA.getCode2(), "Uwu");
 
     }
 }
