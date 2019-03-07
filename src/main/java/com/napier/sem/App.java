@@ -1,5 +1,5 @@
 package com.napier.sem;
-
+import java.util.ArrayList;
 import java.sql.*;
 
 public class App
@@ -14,8 +14,125 @@ public class App
         // Connect to database
         a.connect();
 
+        //city cityStr = a.getCity(cityName);
+        int n = 0;
+        ArrayList<city> largestToSmallestCityWorld = a.getLargestToSmallestCityWorld(n);
+        ArrayList<city> largestToSmallestCapital = a.getLargestToSmallestCapitalWorld();
+        ArrayList<country> largestToSmallestCountryWorld = a.getlargestToSmallestCountryWorld();
+
         // Disconnect from database
         a.disconnect();
+    }
+
+    public ArrayList<city> getLargestToSmallestCityWorld(int n) {
+        try {
+            // creating the sql statement
+            Statement st = con.createStatement();
+            // creating the sql string
+            String strSelect = "";
+
+            if (n==0)
+            {
+                strSelect =
+                        "SELECT city.Name, country.Name, city.District, city.CountryCode, city.Population \n" +
+                                "FROM city, country \n" +
+                                "WHERE city.CountryCode = country.Code \n" +
+                                "ORDER BY city.Population DESC";
+            } else
+            {
+                strSelect =
+                        "SELECT city.Name, country.Name, city.District, city.CountryCode, city.Population \n" +
+                                "FROM city, country \n" +
+                                "WHERE city.CountryCode = country.Code \n" +
+                                "ORDER BY city.Population DESC" +
+                                "LIMIT '" + n + "'\n";
+            }
+
+            // execute the sql statement
+            ResultSet resultset = st.executeQuery(strSelect);
+
+            ArrayList<city> cities = new ArrayList<>();
+
+            while (resultset.next()) {
+                city c = new city();
+                c.setName(resultset.getString("city.Name"));
+                c.setCountryCode(resultset.getString("city.CountryCode"));
+                c.setDistrict(resultset.getString("city.District"));
+                c.setPopulation(resultset.getInt("city.Population"));
+                cities.add(c);
+            }
+            return cities;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("failed to get largest to smallest populated cities");
+            return null;
+        }
+    }
+
+
+    public ArrayList<country> getlargestToSmallestCountryWorld() {
+        try {
+            // creating the sql statement
+            Statement st = con.createStatement();
+            // creating the sql string Code.
+            String strSelect =
+                    "SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, city.Name, country.Capital \n" +
+                            "FROM country, city \n" +
+                            "WHERE city.ID = country.Capital \n" +
+                            "ORDER BY country.Population DESC";
+            // execute the sql statement
+            ResultSet resultset = st.executeQuery(strSelect);
+
+            ArrayList<country> countries = new ArrayList<>();
+
+            while (resultset.next()) {
+                country c = new country();
+                c.setCode(resultset.getString("country.Code"));
+                c.setName(resultset.getString("country.Name"));
+                c.setContinent(resultset.getString("country.Continent"));
+                c.setRegion(resultset.getString("country.Region"));
+                c.setPopulation(resultset.getInt("country.Population"));
+                c.setCapital(resultset.getInt("country.Capital"));
+                countries.add(c);
+            }
+            return countries;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("failed to get largest to smallest populated countries");
+            return null;
+        }
+    }
+
+
+    public ArrayList<city> getLargestToSmallestCapitalWorld() {
+        try {
+            // creating the sql statement
+            Statement st = con.createStatement();
+            // creating the sql string
+            String strSelect =
+                    "SELECT city.Name, country.Name, city.District, city.CountryCode, city.Population \n" +
+                            "FROM city, country \n" +
+                            "WHERE city.CountryCode = country.Code \n" +
+                            "AND city.ID = country.Capital \n" +
+                            "ORDER BY city.Population DESC";
+            // execute the sql statement
+            ResultSet resultset = st.executeQuery(strSelect);
+
+            ArrayList<city> cities = new ArrayList<>();
+            while (resultset.next()) {
+                city c = new city();
+                c.setName(resultset.getString("city.Name"));
+                c.setCountryCode(resultset.getString("city.CountryCode"));
+                c.setDistrict(resultset.getString("city.District"));
+                c.setPopulation(resultset.getInt("city.Population"));
+                cities.add(c);
+            }
+            return cities;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("failed to get largest to smallest populated cities");
+            return null;
+        }
     }
 
     public void connect()
