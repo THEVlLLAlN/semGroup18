@@ -61,6 +61,7 @@ public class App
                 c.setPopulation(resultset.getInt("city.Population"));
                 cities.add(c);
             }
+            System.out.println(cities);
             return cities;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -95,6 +96,7 @@ public class App
                 c.setCapital(resultset.getInt("country.Capital"));
                 countries.add(c);
             }
+            System.out.println(countries);
             return countries;
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -127,7 +129,9 @@ public class App
                 c.setPopulation(resultset.getInt("city.Population"));
                 cities.add(c);
             }
+            System.out.println(cities);
             return cities;
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("failed to get largest to smallest populated cities");

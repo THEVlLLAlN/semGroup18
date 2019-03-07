@@ -18,20 +18,18 @@ public class AppIntegrationTest
     }
 
     @Test
-    void countrylanguageTest() {
+    void largesttosmallestcountrypopN() {
+        int n = 3;
+        ArrayList<city> largestToSmallestCityWorld = app.getLargestToSmallestCityWorld(n);
+        System.out.println(largestToSmallestCityWorld);
+
+        ArrayList<city> largestToSmallestCapital = app.getLargestToSmallestCapitalWorld();
+        assertNotNull(largestToSmallestCapital);
+
         countrylanguage countrylanguageA = new countrylanguage();
 
         countrylanguageA.setCountryCode("Dr Eggman");
         assertEquals(countrylanguageA.getCountryCode(), "Dr Eggman");
-
-        countrylanguageA.setLanguage("Eggish");
-        assertEquals(countrylanguageA.getLanguage(), "Eggish");
-
-        countrylanguageA.setIsOfficial('E');
-        assertEquals(countrylanguageA.getIsOfficial(), 'E');
-
-        countrylanguageA.setPercentage(100);
-        assertEquals(countrylanguageA.getPercentage(), 100);
 
 
 
