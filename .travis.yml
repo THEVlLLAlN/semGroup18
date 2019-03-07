@@ -19,6 +19,12 @@ before_script:
 
 jobs:
   include:
+    - stage: deploy
+        install: skip
+        jdk: oraclejdk11
+        script:
+          - mvn package -DskipTests=true -Dmaven.javadoc.skip=true
+          - docker-compose up --abort-on-container-exit
     - stage: unit tests
       install: skip
       jdk: oraclejdk11
@@ -26,10 +32,5 @@ jobs:
     - stage: integration tests
       jdk: oraclejdk11
       script: mvn test -Dtest=com.napier.sem.AppIntegrationTest
-    - stage: deploy
-      install: skip
-      jdk: oraclejdk11
-      script:
-        - mvn package -DskipTests=true -Dmaven.javadoc.skip=true
-        - docker-compose up --abort-on-container-exit
+
 

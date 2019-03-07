@@ -19,17 +19,7 @@ public class AppIntegrationTest
 
     @Test
     void largesttosmallestcountrypopN() {
-        int n = 3;
-        ArrayList<city> largestToSmallestCityWorld = app.getLargestToSmallestCityWorld(n);
-        System.out.println(largestToSmallestCityWorld);
 
-        ArrayList<city> largestToSmallestCapital = app.getLargestToSmallestCapitalWorld();
-        assertNotNull(largestToSmallestCapital);
-
-        countrylanguage countrylanguageA = new countrylanguage();
-
-        countrylanguageA.setCountryCode("Dr Eggman");
-        assertEquals(countrylanguageA.getCountryCode(), "Dr Eggman");
 
 
 
