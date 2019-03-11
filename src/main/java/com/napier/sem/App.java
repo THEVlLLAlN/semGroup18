@@ -18,12 +18,40 @@ public class App
         int n = 0;
         ArrayList<city> largestToSmallestCityWorld = a.getLargestToSmallestCityWorld(n);
         ArrayList<city> largestToSmallestCapital = a.getLargestToSmallestCapitalWorld();
-        ArrayList<country> largestToSmallestCountryWorld = a.getlargestToSmallestCountryWorld();
+        ArrayList<country> largestToSmallestCountryWorld = a.getLargestToSmallestCountryWorld();
 
         // Disconnect from database
         a.disconnect();
     }
+    public city getCity(int n)
+    {
+        try
+        {
+            Statement stmt = con.createStatement();
+            String strSelect =
+                    "SELECT ID, Name, District, CountryCode, Population " +
+                            "FROM city " +
+                            "WHERE city.id = " + n;
+            ResultSet rset = stmt.executeQuery(strSelect);
 
+            if (rset.next())
+            {
+                city c = new city();
+                c.setID(rset.getInt("city.getID"));
+                c.setName(rset.getString("city.getName"));
+                c.setDistrict(rset.getString("c.District"));
+                c.setPopulation(rset.getInt("c.Population"));
+                return c;
+            }
+            else
+                return null;
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get city details");
+            return null;
+        }
+    }
     public ArrayList<city> getLargestToSmallestCityWorld(int n) {
         try {
             // creating the sql statement
@@ -70,7 +98,7 @@ public class App
     }
 
 
-    public ArrayList<country> getlargestToSmallestCountryWorld() {
+    public ArrayList<country> getLargestToSmallestCountryWorld() {
         try {
             // creating the sql statement
             Statement st = con.createStatement();

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 public class AppIntegrationTest
@@ -15,13 +16,37 @@ public class AppIntegrationTest
     static void init()
     {
         app = new App();
+        app.connect();
     }
 
     @Test
-    void largesttosmallestcountrypopN() {
+    void testGetCity()
+    {
+        city c = app.getCity(4060);
+        assertEquals(c.getID(), 4060);
+        assertEquals(c.getName(),"Santa Monica");
+        assertEquals(c.getDistrict(), "California");
+        assertEquals(c.getPopulation(), 91084);
+    }
 
+    @Test
+    void testGetLargestToSmallestCityWorld() {
+        ArrayList<city> c = app.getLargestToSmallestCityWorld(0);
+        assertNotNull(c);
+        assertEquals(c.size(), 4079);
+    }
 
+    @Test
+    void testGetLargestToSmallestCountryWorld() {
+        ArrayList<country> c = app.getLargestToSmallestCountryWorld();
+        assertNotNull(c);
+        assertEquals(c.size(),238);
+    }
 
-
+    @Test
+    void testGetLargestToSmallestCapitalWorld() {
+        ArrayList<city> c = app.getLargestToSmallestCapitalWorld();
+        assertNotNull(c);
+        assertEquals(c.size(),238);
     }
 }
