@@ -12,7 +12,7 @@ public class App
         App a = new App();
 
         // Connect to database
-        a.connect();
+        a.connect("localhost:33060");
 
         //city cityStr = a.getCity(cityName);
         int n = 0;
@@ -23,6 +23,7 @@ public class App
         // Disconnect from database
         a.disconnect();
     }
+
     public city getCity(int n)
     {
         try
@@ -52,6 +53,7 @@ public class App
             return null;
         }
     }
+
     public ArrayList<city> getLargestToSmallestCityWorld(int n) {
         try {
             // creating the sql statement
@@ -163,12 +165,12 @@ public class App
         }
     }
 
-    public void connect()
+    public void connect(String location)
     {
         try
         {
             // Load Database driver
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         }
         catch (ClassNotFoundException e)
         {
@@ -185,7 +187,7 @@ public class App
                 // Wait a bit for db to start
                 Thread.sleep(30000);
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://" + location + "/world?useSSL=false", "root", "example");
                 System.out.println("Successfully connected");
                 break;
             }
