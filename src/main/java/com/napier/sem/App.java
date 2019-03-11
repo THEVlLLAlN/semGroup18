@@ -38,10 +38,10 @@ public class App
             if (rset.next())
             {
                 city c = new city();
-                c.setID(rset.getInt("city.getID"));
-                c.setName(rset.getString("city.getName"));
-                c.setDistrict(rset.getString("c.District"));
-                c.setPopulation(rset.getInt("c.Population"));
+                c.setID(rset.getInt("ID"));
+                c.setName(rset.getString("Name"));
+                c.setDistrict(rset.getString("District"));
+                c.setPopulation(rset.getInt("Population"));
                 return c;
             }
             else

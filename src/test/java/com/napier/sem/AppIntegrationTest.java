@@ -35,17 +35,6 @@ public class AppIntegrationTest
         assertEquals(c.size(), 4079);
     }
 
-    @Test
-    void testGetLargestToSmallestCountryWorld() {
-        ArrayList<country> c = app.getLargestToSmallestCountryWorld();
-        assertNotNull(c);
-        assertEquals(c.size(),238);
-    }
 
-    @Test
-    void testGetLargestToSmallestCapitalWorld() {
-        ArrayList<city> c = app.getLargestToSmallestCapitalWorld();
-        assertNotNull(c);
-        assertEquals(c.size(),238);
-    }
+    
 }
