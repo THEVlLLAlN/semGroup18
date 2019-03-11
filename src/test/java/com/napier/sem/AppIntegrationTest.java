@@ -31,21 +31,21 @@ public class AppIntegrationTest
     @Test
     void testGetLargestToSmallestCityWorld() {
         ArrayList<city> c = app.getLargestToSmallestCityWorld(0);
-        assertNotNull(c);
+        //assertNotNull(c);
         assertEquals(c.size(), 4079);
     }
 
     @Test
     void testGetLargestToSmallestCountryWorld() {
         ArrayList<country> c = app.getLargestToSmallestCountryWorld();
-        assertNotNull(c);
+        //assertNotNull(c);
         assertEquals(c.size(),238);
     }
 
     @Test
     void testGetLargestToSmallestCapitalWorld() {
         ArrayList<city> c = app.getLargestToSmallestCapitalWorld();
-        assertNotNull(c);
+        //assertNotNull(c);
         assertEquals(c.size(),238);
     }
 }
