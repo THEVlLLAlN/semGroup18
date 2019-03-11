@@ -33,10 +33,3 @@ jobs:
         - mvn package -DskipTests=true -Dmaven.javadoc.skip=true
         - docker-compose up --abort-on-container-exit
 
-
-stages:
-  - unit tests
-  - integration tests
-  - name: deploy
-    if: branch = master
-
