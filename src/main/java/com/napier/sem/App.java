@@ -211,6 +211,24 @@ public class App
         }
     }
 
+    public ResultSet sql(String select, String table, String where){
+        try
+        {
+            Statement stmnt = con.createStatement();
+            String strSelect = "SELECT " + select + " FROM " + table + " WHERE " + where;
+
+            ResultSet results = stmnt.executeQuery(strSelect);
+
+            return results;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Statement Creation Failed.");
+            return null;
+        }
+    }
+
     public void disconnect()
     {
         // Checks a connection is present.
