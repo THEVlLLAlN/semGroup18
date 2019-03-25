@@ -68,8 +68,7 @@ jobs:
     jdk: oraclejdk11
     before_script:
     # Check if Google Cloud SDK is installed.
-    - if [ ! -d ${HOME}/google-cloud-sdk ]; then curl https://sdk.cloud.google.com | bash
-        > /dev/null; fi
+    - if [ ! -d ${HOME}/google-cloud-sdk ]; then curl https://sdk.cloud.google.com | bash > /dev/null; fi
     - source $HOME/google-cloud-sdk/path.bash.inc
     # Install Kubernetes control to manage containers
     - gcloud components install kubectl
