@@ -15,25 +15,26 @@ public class AppIntegrationTest
     static void init()
     {
         app = new App();
+        app.connect("localhost:33060");
     }
 
     @Test
-    void countrylanguageTest() {
-        countrylanguage countrylanguageA = new countrylanguage();
-
-        countrylanguageA.setCountryCode("Dr Eggman");
-        assertEquals(countrylanguageA.getCountryCode(), "Dr Eggman");
-
-        countrylanguageA.setLanguage("Eggish");
-        assertEquals(countrylanguageA.getLanguage(), "Eggish");
-
-        countrylanguageA.setIsOfficial('E');
-        assertEquals(countrylanguageA.getIsOfficial(), 'E');
-
-        countrylanguageA.setPercentage(100);
-        assertEquals(countrylanguageA.getPercentage(), 100);
-
-
-
+    void testGetCity()
+    {
+        city c = app.getCity(4060);
+        assertEquals(c.getID(), 4060);
+        assertEquals(c.getName(),"Santa Monica");
+        assertEquals(c.getDistrict(), "California");
+        assertEquals(c.getPopulation(), 91084);
     }
+
+    @Test
+    void testGetLargestToSmallestCityWorld() {
+        ArrayList<city> c = app.getLargestToSmallestCityWorld(0);
+        assertNotNull(c);
+        assertEquals(c.size(), 4079);
+    }
+
+
+    
 }
