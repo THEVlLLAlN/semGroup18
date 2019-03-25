@@ -15,11 +15,22 @@ public class App
         // Connect to database
         a.connect("localhost:33060");
 
+        String where = "";
+
         //city cityStr = a.getCity(cityName);
         int n = 0;
-        ArrayList<city> largestToSmallestCityWorld = a.getLargestToSmallestCityWorld(n);
-        ArrayList<city> largestToSmallestCapital = a.getLargestToSmallestCapitalWorld();
-        ArrayList<country> largestToSmallestCountryWorld = a.getLargestToSmallestCountryWorld();
+
+        ArrayList<city> Cities = a.getCities(n, where);
+
+        for (city CityA : Cities){
+            if (CityA == null)
+                continue;
+            String city_string = CityA.getName() + " " + CityA.getCountryCode();
+            System.out.println(city_string);
+        }
+
+        //ArrayList<city> largestToSmallestCapital = a.getLargestToSmallestCapitalWorld();
+        //ArrayList<country> largestToSmallestCountryWorld = a.getLargestToSmallestCountryWorld();
 
         // Disconnect from database
         a.disconnect();
@@ -55,47 +66,36 @@ public class App
         }
     }
 
-    public ArrayList<city> getLargestToSmallestCityWorld(int n) {
+    public ArrayList<city> getCities(int n, String where) {
         try {
-            // creating the sql statement
-            Statement st = con.createStatement();
-            // creating the sql string
-            String strSelect = "";
+            String select = "SELECT city.Name, country.Name, city.District, city.CountryCode, city.Population ";
+            String from = "FROM city, country ";
+            String orderBy = "ORDER BY city.Population DESC";
 
-            if (n==0)
-            {
-                strSelect =
-                        "SELECT city.Name, country.Name, city.District, city.CountryCode, city.Population \n" +
-                                "FROM city, country \n" +
-                                "WHERE city.CountryCode = country.Code \n" +
-                                "ORDER BY city.Population DESC";
-            } else
-            {
-                strSelect =
-                        "SELECT city.Name, country.Name, city.District, city.CountryCode, city.Population \n" +
-                                "FROM city, country \n" +
-                                "WHERE city.CountryCode = country.Code \n" +
-                                "ORDER BY city.Population DESC" +
-                                "LIMIT '" + n + "'\n";
+            int iterationCounter = 0;
+            if (n == 0){
+                n = 99999;
             }
 
             // execute the sql statement
-            ResultSet resultset = st.executeQuery(strSelect);
+            ResultSet resultset = sql(select, from, where, orderBy);
 
             ArrayList<city> cities = new ArrayList<>();
 
-            while (resultset.next()) {
+            while (resultset.next() && iterationCounter < n)
+            {
                 city c = new city();
                 c.setName(resultset.getString("city.Name"));
                 c.setCountryCode(resultset.getString("city.CountryCode"));
                 c.setDistrict(resultset.getString("city.District"));
                 c.setPopulation(resultset.getInt("city.Population"));
                 cities.add(c);
+                iterationCounter++;
             }
             return cities;
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("failed to get largest to smallest populated cities");
+            System.out.println("Failed to get cities");
             return null;
         }
     }
@@ -211,11 +211,11 @@ public class App
         }
     }
 
-    public ResultSet sql(String select, String table, String where){
+    public ResultSet sql(String select, String table, String where, String order){
         try
         {
             Statement stmnt = con.createStatement();
-            String strSelect = "SELECT " + select + " FROM " + table + " WHERE " + where;
+            String strSelect = select + table + where + order;
 
             ResultSet results = stmnt.executeQuery(strSelect);
 
