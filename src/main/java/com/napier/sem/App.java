@@ -72,17 +72,19 @@ public class App
             String from = "FROM city, country ";
             String orderBy = "ORDER BY city.Population DESC";
 
+            /*
             int iterationCounter = 0;
             if (n == 0){
                 n = 99999;
             }
+            */
 
             // execute the sql statement
             ResultSet resultset = sql(select, from, where, orderBy);
 
             ArrayList<city> cities = new ArrayList<>();
 
-            while (resultset.next() && iterationCounter < n)
+            while (resultset.next())
             {
                 city c = new city();
                 c.setName(resultset.getString("city.Name"));
@@ -90,7 +92,7 @@ public class App
                 c.setDistrict(resultset.getString("city.District"));
                 c.setPopulation(resultset.getInt("city.Population"));
                 cities.add(c);
-                iterationCounter++;
+                //iterationCounter++;
             }
             return cities;
         } catch (Exception e) {
