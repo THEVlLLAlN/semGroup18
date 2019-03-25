@@ -29,10 +29,19 @@ public class AppIntegrationTest
     }
 
     @Test
-    void testGetLargestToSmallestCityWorld() {
-        ArrayList<city> c = app.getLargestToSmallestCityWorld(0);
-        assertNotNull(c);
-        assertEquals(c.size(), 4079);
+    void testGetCities() {
+        String where = "";
+
+        int n = 0;
+
+        ArrayList<city> Cities = app.getCities(n, where);
+
+        for (city CityA : Cities){
+            if (CityA == null)
+                continue;
+            String city_string = CityA.getName() + " " + CityA.getCountryCode();
+            System.out.println(city_string);
+        }
     }
 
 
