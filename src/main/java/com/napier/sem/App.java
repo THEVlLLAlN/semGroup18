@@ -68,7 +68,7 @@ public class App
 
     public ArrayList<city> getCities(int n, String where) {
         try {
-            String select = "SELECT city.Name, country.Name, city.District, city.CountryCode, city.Population ";
+            String select = "SELECT DISTINCT city.Name, country.Name, city.District, city.CountryCode, city.Population ";
             String from = "FROM city, country ";
             String groupBy = "GROUP BY city.Name, country.Name, city.District, city.CountryCode, city.Population ";
             String orderBy = "ORDER BY city.Population DESC";

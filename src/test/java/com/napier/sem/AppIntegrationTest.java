@@ -30,7 +30,7 @@ public class AppIntegrationTest
 
     @Test
     void testGetCities() {
-        String where = "";
+        String where = "WHERE city.CountryCode = country.Code";
 
         int n = 0;
 
