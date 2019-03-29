@@ -70,7 +70,7 @@ public class App
         try {
             String select = "SELECT city.Name, country.Name, city.District, city.CountryCode, city.Population ";
             String from = "FROM city, country ";
-            String groupBy = "GROUP BY city.Name, country.Name ";
+            String groupBy = "GROUP BY city.Name, country.Name, city.District, city.CountryCode, city.Population ";
             String orderBy = "ORDER BY city.Population DESC";
             String limit = "";
 
