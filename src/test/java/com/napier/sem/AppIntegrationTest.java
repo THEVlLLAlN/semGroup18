@@ -42,6 +42,7 @@ public class AppIntegrationTest
             city CityA = Cities.get(counter);
             String city_string = CityA.getName() + " " + CityA.getCountryCode();
             System.out.println(city_string);
+            counter++;
         }
     }
 
