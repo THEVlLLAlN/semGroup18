@@ -70,17 +70,16 @@ public class App
         try {
             String select = "SELECT city.Name, country.Name, city.District, city.CountryCode, city.Population ";
             String from = "FROM city, country ";
+            String groupBy = "GROUP BY city.Name";
             String orderBy = "ORDER BY city.Population DESC";
+            String limit = "";
 
-            /*
-            int iterationCounter = 0;
-            if (n == 0){
-                n = 99999;
+            if (n != 0){
+                limit = "LIMIT " + n;
             }
-            */
 
             // execute the sql statement
-            ResultSet resultset = sql(select, from, where, orderBy);
+            ResultSet resultset = sql(select, from, where, groupBy, orderBy, limit);
 
             ArrayList<city> cities = new ArrayList<>();
 
@@ -92,7 +91,6 @@ public class App
                 c.setDistrict(resultset.getString("city.District"));
                 c.setPopulation(resultset.getInt("city.Population"));
                 cities.add(c);
-                //iterationCounter++;
             }
             return cities;
         } catch (Exception e) {
@@ -213,11 +211,11 @@ public class App
         }
     }
 
-    public ResultSet sql(String select, String table, String where, String order){
+    public ResultSet sql(String select, String table, String where, String group, String order, String limit){
         try
         {
             Statement stmnt = con.createStatement();
-            String strSelect = select + table + where + order;
+            String strSelect = select + table + where + group + order + limit;
 
             ResultSet results = stmnt.executeQuery(strSelect);
 
