@@ -68,18 +68,25 @@ public class App
 
     public ArrayList<city> getCities(int n, String where) {
         try {
-            String select = "SELECT city.Name, country.Name, city.District, city.CountryCode, city.Population ";
-            String from = "FROM city, country ";
-            String groupBy = "";
-            String orderBy = "ORDER BY city.Population DESC";
-            String limit = "";
+            StringBuilder stmnt = new StringBuilder();
+            stmnt.append("SELECT city.Name, country.Name, city.District, city.CountryCode, city.Population ");
+            stmnt.append("FROM city, country ");
+            stmnt.append("WHERE city.CountryCode = country.Code ");
+            if (!where.isEmpty()){
+                stmnt.append(where);
+            }
+            stmnt.append(" AND city.CountryCode = country.Code ");
+            stmnt.append("ORDER BY city.Population DESC");
 
             if (n != 0){
-                limit = "LIMIT " + n;
+                stmnt.append("LIMIT ");
+                stmnt.append(n);
             }
+            
+            String statement = stmnt.toString();
 
             // execute the sql statement
-            ResultSet resultset = sql(select, from, where, groupBy, orderBy, limit);
+            ResultSet resultset = sql(statement);
 
             ArrayList<city> cities = new ArrayList<>();
 
@@ -211,13 +218,12 @@ public class App
         }
     }
 
-    public ResultSet sql(String select, String table, String where, String group, String order, String limit){
+    public ResultSet sql(String statement){
         try
         {
             Statement stmnt = con.createStatement();
-            String strSelect = select + table + where + group + order + limit;
 
-            ResultSet results = stmnt.executeQuery(strSelect);
+            ResultSet results = stmnt.executeQuery(statement);
 
             return results;
         }
