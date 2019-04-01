@@ -98,8 +98,12 @@ jobs:
     - gcloud container clusters create hr-cluster --num-nodes=1
     # Tell kubernetes to run the built database image, opening port 3306
     - kubectl run db --image=gcr.io/${PROJECT_ID}/db --port 3306
-    # Expose the cluster to the Internet, mapping external port 3306 to internal port 3306.
-    - kubectl expose deployment app --port=3306 --target-port=3306 --type=LoadBalancer
+    # Expose database service to the rest of the cluster with name db.
+    - kubectl expose deployment db --name=db
+    # Tell kubernetes to run the build application image, opening port 8080
+    - kubectl run app --image=gcr.io/${PROJECT_ID}/app --port 8080
+    # Expose the app to the Internet, mapping external port 3306 to internal port 3306.
+    - kubectl expose deployment app --port=80 --target-port=8080 --type=LoadBalancer
 
 stages:
 - unit tests
