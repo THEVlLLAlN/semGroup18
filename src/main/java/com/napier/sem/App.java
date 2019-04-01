@@ -35,9 +35,9 @@ public class App
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT city.Name, city.District, city.CountryCode, city.Population ");
-            stmnt.append("FROM city, country ");
-            stmnt.append("WHERE city.CountryCode = country.Code ");
+            stmnt.append("FROM city JOIN country ON city.CountryCode = country.Code");
             if (!where.isEmpty()) {
+                stmnt.append(" WHERE ");
                 stmnt.append(where);
             }
             stmnt.append(" ORDER BY city.Population DESC");
@@ -111,6 +111,31 @@ public class App
         }
     }
 
+    public void showPopulations(String where) {
+        try {
+            StringBuilder stmnt = new StringBuilder();
+            stmnt.append("SELECT SUM(country.Population), SUM(city.Population), SUM(country.Population)-SUM(city.Population) ");
+            stmnt.append("FROM country JOIN city ON country.Code = city.CountryCode ");
+            stmnt.append("WHERE ");
+            stmnt.append(where);
+            stmnt.append(" ORDER BY SUM(country.Population)");
+
+            String statement = stmnt.toString();
+
+            // execute the sql statement
+            ResultSet resultset = sql(statement);
+
+            while(resultset.next()) {
+                System.out.println(resultset.getInt(1));
+                System.out.println(resultset.getInt(2));
+                System.out.println(resultset.getInt(3));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get population information.");
+        }
+    }
+
     public int getPopulation(String type, String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
@@ -137,6 +162,7 @@ public class App
                 }
             }
             if (type.equalsIgnoreCase("District") || type.equalsIgnoreCase("City")) {
+                stmnt.append("FROM city ");
                 if (type.equalsIgnoreCase("District")) {
                     stmnt.append("WHERE District = '");
                     stmnt.append(where);
@@ -164,6 +190,31 @@ public class App
             System.out.println(e.getMessage());
             System.out.println("Failed to get population.");
             return 0;
+        }
+    }
+
+    public void getLanguageData(String language) {
+        try {
+            StringBuilder stmnt = new StringBuilder();
+            stmnt.append("SELECT Language, SUM(Population)/Percentage, Percentage");
+            stmnt.append(" FROM countrylanguage JOIN country ON CountryCode = Code");
+            stmnt.append("WHERE Language = '");
+            stmnt.append(language);
+            stmnt.append("' ORDER BY Percentage");
+
+            String statement = stmnt.toString();
+
+            // execute the sql statement
+            ResultSet resultset = sql(statement);
+
+            while (resultset.next()) {
+                System.out.println(resultset.getString(1));
+                System.out.println(resultset.getString(2));
+                System.out.println(resultset.getString(3));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get language data.");
         }
     }
 
