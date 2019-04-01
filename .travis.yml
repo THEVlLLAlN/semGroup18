@@ -88,12 +88,18 @@ jobs:
     - docker build -t gcr.io/${PROJECT_ID}/db db/.
     # Push the database image.
     - docker push gcr.io/${PROJECT_ID}/db
+    # Build the application
+    - mvn package -DskipTests=true -Dmaven.javadoc.skip=true
+    # Build the application image
+    - docker build -t gcr.io/${PROJECT_ID}/app .
+    # Push the application image.
+    - docker push gcr.io/${PROJECT_ID}/app
     # Create a container cluster.  We only need one node.
     - gcloud container clusters create hr-cluster --num-nodes=1
     # Tell kubernetes to run the built database image, opening port 3306
-    - kubectl run hr --image=gcr.io/${PROJECT_ID}/db --port 3306
+    - kubectl run db --image=gcr.io/${PROJECT_ID}/db --port 3306
     # Expose the cluster to the Internet, mapping external port 3306 to internal port 3306.
-    - kubectl expose deployment hr --port=3306 --target-port=3306 --type=LoadBalancer
+    - kubectl expose deployment app --port=3306 --target-port=3306 --type=LoadBalancer
 
 stages:
 - unit tests
