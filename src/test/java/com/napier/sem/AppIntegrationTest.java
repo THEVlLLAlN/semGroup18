@@ -19,16 +19,6 @@ public class AppIntegrationTest
     }
 
     @Test
-    void testGetCity()
-    {
-        city c = app.getCity(4060);
-        assertEquals(c.getID(), 4060);
-        assertEquals(c.getName(),"Santa Monica");
-        assertEquals(c.getDistrict(), "California");
-        assertEquals(c.getPopulation(), 91084);
-    }
-
-    @Test
     void testGetCities() {
         String where = "";
 

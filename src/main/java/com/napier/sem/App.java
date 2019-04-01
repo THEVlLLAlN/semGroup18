@@ -16,8 +16,6 @@ public class App
         a.connect("localhost:33060");
 
         String where = "";
-
-        //city cityStr = a.getCity(cityName);
         int n = 0;
 
         ArrayList<city> Cities = a.getCities(n, where);
