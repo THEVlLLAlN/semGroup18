@@ -130,6 +130,12 @@ public class AppTest {
 
     @Test
     void populationTestCity(){
+        String type = "City";
+        String where = "Kabul";
+
+        int population = app.getPopulation(type, where);
+
+        assertEquals(population, 1780000);
 
     }
 
