@@ -97,6 +97,7 @@ public class AppTest {
 
     }
 
+
     @Test
     void cityTest(){
         city cityA = new city();
@@ -116,5 +117,16 @@ public class AppTest {
         cityA.setPopulation(123456789);
         assertEquals(cityA.getPopulation(), 123456789);
     }
+
+
+    @Test
+    void populationTestNull(){
+        String typenull = "";
+        String wherenull = "";
+
+        app.getPopulation(String typenull, String wherenull);
+
+    }
+    
 
 }
