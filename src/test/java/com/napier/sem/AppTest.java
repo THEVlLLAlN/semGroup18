@@ -96,4 +96,25 @@ public class AppTest {
 
 
     }
+
+    @Test
+    void cityTest(){
+        city cityA = new city();
+
+        cityA.setID(123);
+        assertEquals(cityA.getID(), 123);
+
+        cityA.setName("Coolsville");
+        assertEquals(cityA.getName(), "Coolsville");
+
+        cityA.setCountryCode("boop!");
+        assertEquals(cityA.getCountryCode(), "boop!");
+
+        cityA.setDistrict("East end");
+        assertEquals(cityA.getDistrict(), "East end");
+
+        cityA.setPopulation(123456789);
+        assertEquals(cityA.getPopulation(), 123456789);
+    }
+
 }
