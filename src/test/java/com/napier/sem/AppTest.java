@@ -124,9 +124,13 @@ public class AppTest {
         String typenull = "";
         String wherenull = "";
 
-        app.getPopulation(String typenull, String wherenull);
+        app.getPopulation(typenull, wherenull);
 
     }
-    
+
+    @Test
+    void populationTestCity(){
+
+    }
 
 }
