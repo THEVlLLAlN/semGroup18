@@ -1,4 +1,4 @@
-##SOLVED
+## SOLVED
 
 ---
 name: Join creates repeated info bug report
