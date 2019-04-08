@@ -139,4 +139,16 @@ public class AppTest {
 
     }
 
+
+    @Test
+    void populationTestCountry(){
+        String type = "Country";
+        String where = "France";
+
+        int population = app.getPopulation(type, where);
+
+        assertEquals(population, 59225700);
+
+    }
+
 }
