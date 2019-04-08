@@ -1,12 +1,10 @@
-## SOLVED
-
 ---
 name: Join creates repeated info bug report
 about: Create a report to help us improve
 title: 'Incorrect Join Response'
 labels: 'bug :bug:'
 assignees: LewisGreeb, THEVlLLAlN, BenThomasSutton, televisedbrain
-
+resolved: Yes
 ---
 
 **Describe the bug**
