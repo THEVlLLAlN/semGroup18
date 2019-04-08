@@ -141,6 +141,17 @@ public class AppTest {
 
 
     @Test
+    void populationTestInvalidCity(){
+        String type = "City";
+        String where = "jsjdhghdjsd";
+
+        app.getPopulation(type, where);
+        
+
+    }
+
+
+    @Test
     void populationTestCountry(){
         String type = "Country";
         String where = "France";
