@@ -1,3 +1,5 @@
+##SOLVED
+
 ---
 name: Join creates repeated info bug report
 about: Create a report to help us improve
