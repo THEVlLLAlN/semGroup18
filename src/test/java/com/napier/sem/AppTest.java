@@ -24,25 +24,6 @@ public class AppTest {
         app.disconnect();
     }
 
-    @Test
-    void cityTest() {
-        city cityA = new city();
-
-        cityA.setID(12);
-        assertEquals(cityA.getID(), 12);
-
-        cityA.setName("Edinburgh");
-        assertEquals(cityA.getName(), "Edinburgh");
-
-        cityA.setCountryCode("+44");
-        assertEquals(cityA.getCountryCode(), "+44");
-
-        cityA.setDistrict("Haymarket");
-        assertEquals(cityA.getDistrict(), "Haymarket");
-
-        cityA.setPopulation(450000);
-        assertEquals(cityA.getPopulation(), 450000);
-    }
 
     @Test
     void countryTest() {

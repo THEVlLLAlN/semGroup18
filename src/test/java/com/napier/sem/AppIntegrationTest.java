@@ -19,20 +19,21 @@ public class AppIntegrationTest
     }
 
     @Test
-    void testGetCity()
-    {
-        city c = app.getCity(4060);
-        assertEquals(c.getID(), 4060);
-        assertEquals(c.getName(),"Santa Monica");
-        assertEquals(c.getDistrict(), "California");
-        assertEquals(c.getPopulation(), 91084);
-    }
+    void testGetCities() {
+        String where = "";
 
-    @Test
-    void testGetLargestToSmallestCityWorld() {
-        ArrayList<city> c = app.getLargestToSmallestCityWorld(0);
-        assertNotNull(c);
-        assertEquals(c.size(), 4079);
+        int n = 0;
+
+        ArrayList<city> Cities = app.getCities(n, where);
+
+        int counter = 0;
+
+        while (counter < Cities.size()){
+            city CityA = Cities.get(counter);
+            String city_string = CityA.getName() + " " + CityA.getCountryCode();
+            System.out.println(city_string);
+            counter++;
+        }
     }
 
 
