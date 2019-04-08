@@ -119,57 +119,7 @@ public class AppTest {
     }
 
 
-    @Test
-    void populationTestNull(){
-        String typenull = "";
-        String wherenull = "";
 
-        app.getPopulation(typenull, wherenull);
-
-    }
-
-    @Test
-    void populationTestCity(){
-        String type = "City";
-        String where = "Kabul";
-
-        int population = app.getPopulation(type, where);
-
-        assertEquals(population, 1780000);
-
-    }
-
-
-    @Test
-    void populationTestInvalidCity(){
-        String type = "City";
-        String where = "jsjdhghdjsd";
-
-        app.getPopulation(type, where);
-        
-
-    }
-
-
-    @Test
-    void populationTestCountry(){
-        String type = "Country";
-        String where = "France";
-
-        int population = app.getPopulation(type, where);
-
-        assertEquals(population, 59225700);
-
-    }
-
-    @Test
-    void populationTestInvalidCountry(){
-        String type = "Country";
-        String where = "12345678dhds";
-
-        app.getPopulation(type, where);
-
-    }
 
 
 }
