@@ -24,18 +24,67 @@ public class AppIntegrationTest
 
         int n = 0;
 
-        ArrayList<city> Cities = app.getCities(n, where);
+        app.getCities(n, where);
+    }
 
-        int counter = 0;
+    @Test
+    void populationTestNull(){
+        String typenull = "";
+        String wherenull = "";
 
-        while (counter < Cities.size()){
-            city CityA = Cities.get(counter);
-            String city_string = CityA.getName() + " " + CityA.getCountryCode();
-            System.out.println(city_string);
-            counter++;
-        }
+        app.getPopulation(typenull, wherenull);
+
+    }
+
+    @Test
+    void populationTestCity(){
+        String type = "City";
+        String where = "Kabul";
+
+        int population = app.getPopulation(type, where);
+
+        assertEquals(1780000, population);
+
     }
 
 
-    
+    @Test
+    void populationTestInvalidCity(){
+        String type = "City";
+        String where = "jsjdhghdjsd";
+
+        app.getPopulation(type, where);
+
+
+    }
+
+
+    @Test
+    void populationTestCountry(){
+        String type = "Country";
+        String where = "France";
+
+        int population = app.getPopulation(type, where);
+
+        assertEquals(59225700, population);
+
+    }
+
+    @Test
+    void populationTestInvalidCountry(){
+        String type = "Country";
+        String where = "12345678dhds";
+
+        app.getPopulation(type, where);
+
+    }
+
+    @Test
+    void populationTestInvalidType(){
+        String type = "xxxxxxx";
+        String where = "France";
+
+        app.getPopulation(type, where);
+
+    }
 }

@@ -31,8 +31,9 @@ public class App
         SpringApplication.run(App.class, args);
     }
 
+
     @RequestMapping("getCities")
-    public ArrayList<city> getCities(@RequestParam(value = "id") int n , @RequestParam(value = "where") String where) {
+    public void getCities(@RequestParam(value = "id") int n , @RequestParam(value = "where") String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT city.Name, city.District, city.CountryCode, city.Population ");
@@ -61,13 +62,12 @@ public class App
                 c.setCountryCode(resultset.getString("city.CountryCode"));
                 c.setDistrict(resultset.getString("city.District"));
                 c.setPopulation(resultset.getInt("city.Population"));
+                System.out.println(c.getName() + " " + c.getCountryCode() + " " + c.getDistrict() + " " + c.getPopulation());
                 cities.add(c);
             }
-            return cities;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get cities");
-            return null;
         }
     }
 
@@ -140,12 +140,12 @@ public class App
     public int getPopulation(String type, String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
-            stmnt.append("SELECT SUM(Population) ");
             if (type.equalsIgnoreCase("World")){
-                stmnt.append("FROM country");
+                stmnt.append("SELECT SUM(Population) FROM country");
             }
-            if (type.equalsIgnoreCase("Continent") || type.equalsIgnoreCase("Region") || type.equalsIgnoreCase("Country")){
-                stmnt.append("FROM country ");
+            else if (type.equalsIgnoreCase("Continent") || type.equalsIgnoreCase("Region") || type.equalsIgnoreCase("Country"))
+            {
+                stmnt.append("SELECT SUM(Population) FROM country ");
                 if (type.equalsIgnoreCase("Continent")) {
                     stmnt.append("WHERE Continent = '");
                     stmnt.append(where);
@@ -157,20 +157,21 @@ public class App
                     stmnt.append("'");
                 }
                 if (type.equalsIgnoreCase("Country")) {
-                    stmnt.append("WHERE Country = '");
+                    stmnt.append("WHERE Name = '");
                     stmnt.append(where);
                     stmnt.append("'");
                 }
             }
-            if (type.equalsIgnoreCase("District") || type.equalsIgnoreCase("City")) {
-                stmnt.append("FROM city ");
+            else if (type.equalsIgnoreCase("District") || type.equalsIgnoreCase("City"))
+            {
+                stmnt.append("SELECT SUM(Population) FROM city ");
                 if (type.equalsIgnoreCase("District")) {
                     stmnt.append("WHERE District = '");
                     stmnt.append(where);
                     stmnt.append("'");
                 }
                 if (type.equalsIgnoreCase("City")) {
-                    stmnt.append("WHERE City = '");
+                    stmnt.append("WHERE Name = '");
                     stmnt.append(where);
                     stmnt.append("'");
                 }
