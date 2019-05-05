@@ -142,7 +142,8 @@ public class App
             if (type.equalsIgnoreCase("World")){
                 stmnt.append("SELECT SUM(Population) FROM country");
             }
-            if (type.equalsIgnoreCase("Continent") || type.equalsIgnoreCase("Region") || type.equalsIgnoreCase("Country")){
+            else if (type.equalsIgnoreCase("Continent") || type.equalsIgnoreCase("Region") || type.equalsIgnoreCase("Country"))
+            {
                 stmnt.append("SELECT SUM(Population) FROM country ");
                 if (type.equalsIgnoreCase("Continent")) {
                     stmnt.append("WHERE Continent = '");
@@ -160,7 +161,8 @@ public class App
                     stmnt.append("'");
                 }
             }
-            if (type.equalsIgnoreCase("District") || type.equalsIgnoreCase("City")) {
+            else if (type.equalsIgnoreCase("District") || type.equalsIgnoreCase("City"))
+            {
                 stmnt.append("SELECT SUM(Population) FROM city ");
                 if (type.equalsIgnoreCase("District")) {
                     stmnt.append("WHERE District = '");
@@ -168,7 +170,7 @@ public class App
                     stmnt.append("'");
                 }
                 if (type.equalsIgnoreCase("City")) {
-                    stmnt.append("WHERE City = '");
+                    stmnt.append("WHERE Name = '");
                     stmnt.append(where);
                     stmnt.append("'");
                 }

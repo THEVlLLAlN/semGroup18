@@ -88,5 +88,12 @@ public class AppIntegrationTest
 
     }
 
-    
+    @Test
+    void populationTestInvalidType(){
+        String type = "xxxxxxx";
+        String where = "France";
+
+        app.getPopulation(type, where);
+
+    }
 }
