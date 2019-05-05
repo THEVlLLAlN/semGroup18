@@ -111,8 +111,8 @@ public class App
             return null;
         }
     }
-
-    public void showPopulations(String where) {
+    @RequestMapping("showPop")
+    public void showPopulations(@RequestParam(value = "id") String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT SUM(country.Population), SUM(city.Population), SUM(country.Population)-SUM(city.Population) ");
