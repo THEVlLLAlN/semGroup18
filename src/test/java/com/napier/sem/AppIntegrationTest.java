@@ -52,7 +52,7 @@ public class AppIntegrationTest
 
         int population = app.getPopulation(type, where);
 
-        assertEquals(population, 1780000);
+        assertEquals(1780000, population);
 
     }
 
@@ -75,7 +75,7 @@ public class AppIntegrationTest
 
         int population = app.getPopulation(type, where);
 
-        assertEquals(population, 59225700);
+        assertEquals(59225700, population);
 
     }
 
