@@ -24,16 +24,7 @@ public class AppIntegrationTest
 
         int n = 0;
 
-        ArrayList<city> Cities = app.getCities(n, where);
-
-        int counter = 0;
-
-        while (counter < Cities.size()){
-            city CityA = Cities.get(counter);
-            String city_string = CityA.getName() + " " + CityA.getCountryCode();
-            System.out.println(city_string);
-            counter++;
-        }
+        app.getCities(n, where);
     }
 
     @Test

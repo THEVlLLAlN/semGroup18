@@ -18,20 +18,13 @@ public class App
         String where = "";
         int n = 0;
 
-        ArrayList<city> Cities = a.getCities(n, where);
-
-        for (city CityA : Cities){
-            if (CityA == null)
-                continue;
-            String city_string = CityA.getName() + " " + CityA.getCountryCode();
-            System.out.println(city_string);
-        }
+        a.getCities(n, where);
 
         // Disconnect from database
         a.disconnect();
     }
 
-    public ArrayList<city> getCities(int n, String where) {
+    public void getCities(int n, String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT city.Name, city.District, city.CountryCode, city.Population ");
@@ -60,13 +53,12 @@ public class App
                 c.setCountryCode(resultset.getString("city.CountryCode"));
                 c.setDistrict(resultset.getString("city.District"));
                 c.setPopulation(resultset.getInt("city.Population"));
+                System.out.println(c.getName() + " " + c.getCountryCode() + " " + c.getDistrict() + " " + c.getPopulation());
                 cities.add(c);
             }
-            return cities;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get cities");
-            return null;
         }
     }
 
