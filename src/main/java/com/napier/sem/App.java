@@ -139,12 +139,11 @@ public class App
     public int getPopulation(String type, String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
-            stmnt.append("SELECT SUM(Population) ");
             if (type.equalsIgnoreCase("World")){
-                stmnt.append("FROM country");
+                stmnt.append("SELECT SUM(Population) FROM country");
             }
             if (type.equalsIgnoreCase("Continent") || type.equalsIgnoreCase("Region") || type.equalsIgnoreCase("Country")){
-                stmnt.append("FROM country ");
+                stmnt.append("SELECT SUM(Population) FROM country ");
                 if (type.equalsIgnoreCase("Continent")) {
                     stmnt.append("WHERE Continent = '");
                     stmnt.append(where);
@@ -162,7 +161,7 @@ public class App
                 }
             }
             if (type.equalsIgnoreCase("District") || type.equalsIgnoreCase("City")) {
-                stmnt.append("FROM city ");
+                stmnt.append("SELECT SUM(Population) FROM city ");
                 if (type.equalsIgnoreCase("District")) {
                     stmnt.append("WHERE District = '");
                     stmnt.append(where);
