@@ -156,7 +156,7 @@ public class App
                     stmnt.append("'");
                 }
                 if (type.equalsIgnoreCase("Country")) {
-                    stmnt.append("WHERE Country = '");
+                    stmnt.append("WHERE Name = '");
                     stmnt.append(where);
                     stmnt.append("'");
                 }
