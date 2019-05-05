@@ -1,37 +1,38 @@
 package com.napier.sem;
-import java.util.ArrayList;
-import java.sql.*;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.sql.*;
+import java.util.ArrayList;
+
+@SpringBootApplication
+@RestController
 public class App
 {
     // Create variable to store connection.
-    private Connection con = null;
+    private static Connection con = null;
 
     public static void main(String[] args)
     {
-        // Create new Application
-        App a = new App();
-        //XD
         // Connect to database
-        a.connect("localhost:33060");
-
-        String where = "";
-        int n = 0;
-
-        ArrayList<city> Cities = a.getCities(n, where);
-
-        for (city CityA : Cities){
-            if (CityA == null)
-                continue;
-            String city_string = CityA.getName() + " " + CityA.getCountryCode();
-            System.out.println(city_string);
+        if (args.length < 1)
+        {
+            connect("localhost:33060");
+        }
+        else
+        {
+            connect(args[0]);
         }
 
-        // Disconnect from database
-        a.disconnect();
+        SpringApplication.run(App.class, args);
     }
 
-    public ArrayList<city> getCities(int n, String where) {
+    @RequestMapping("getCities")
+    public ArrayList<city> getCities(@RequestParam(value = "id") int n , @RequestParam(value = "where") String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT city.Name, city.District, city.CountryCode, city.Population ");
@@ -235,7 +236,7 @@ public class App
         }
     }
 
-    public void connect(String location)
+    public static void connect(String location)
     {
         try
         {
@@ -281,7 +282,7 @@ public class App
     }
 
 
-    public void disconnect()
+    public static void disconnect()
     {
         // Checks a connection is present.
         if (con != null)
