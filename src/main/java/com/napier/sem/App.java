@@ -68,10 +68,10 @@ public class App
                 stmnt.append("WHERE ");
                 stmnt.append(where);
             }
-            stmnt.append(" ORDER BY Population DESC");
+            stmnt.append(" ORDER BY Population DESC ");
 
             if (n != 0) {
-                stmnt.append(" LIMIT ");
+                stmnt.append("LIMIT ");
                 stmnt.append(n);
             }
 
