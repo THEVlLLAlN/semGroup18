@@ -36,7 +36,7 @@ public class App
             stmnt.append(" ORDER BY city.Population DESC");
 
             if (n != 0) {
-                stmnt.append("LIMIT ");
+                stmnt.append(" LIMIT ");
                 stmnt.append(n);
             }
 
