@@ -45,8 +45,6 @@ public class App
             // execute the sql statement
             ResultSet resultset = sql(statement);
 
-            ArrayList<city> cities = new ArrayList<>();
-
             while (resultset.next()) {
                 city c = new city();
                 c.setName(resultset.getString("city.Name"));
@@ -54,7 +52,6 @@ public class App
                 c.setDistrict(resultset.getString("city.District"));
                 c.setPopulation(resultset.getInt("city.Population"));
                 System.out.println(c.getName() + " " + c.getCountryCode() + " " + c.getDistrict() + " " + c.getPopulation());
-                cities.add(c);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -62,7 +59,7 @@ public class App
         }
     }
 
-    public ArrayList<country> getCountries(int n, String where) {
+    public void getCountries(int n, String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT Code, Name, Continent, Region, Population, Capital");
@@ -83,8 +80,6 @@ public class App
             // execute the sql statement
             ResultSet resultset = sql(statement);
 
-            ArrayList<country> countries = new ArrayList<>();
-
             while (resultset.next()) {
                 country c = new country();
                 c.setCode(resultset.getString("Code"));
@@ -93,13 +88,11 @@ public class App
                 c.setRegion(resultset.getString("Region"));
                 c.setPopulation(resultset.getInt("Population"));
                 c.setCapital(resultset.getInt("Capital"));
-                countries.add(c);
+                System.out.println(c.getCode() + " " + c.getName() + " " + c.getContinent() + " " + c.getRegion() + " " + c.getPopulation() + " Capital Code:" + c.getCapital());
             }
-            return countries;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries.");
-            return null;
         }
     }
 
@@ -118,9 +111,7 @@ public class App
             ResultSet resultset = sql(statement);
 
             while(resultset.next()) {
-                System.out.println(resultset.getInt(1));
-                System.out.println(resultset.getInt(2));
-                System.out.println(resultset.getInt(3));
+                System.out.println(resultset.getInt(1) + " " + resultset.getInt(2) + " " + resultset.getInt(3));
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -128,7 +119,7 @@ public class App
         }
     }
 
-    public int getPopulation(String type, String where) {
+    public void getPopulation(String type, String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
             if (type.equalsIgnoreCase("World")){
@@ -173,16 +164,12 @@ public class App
             // execute the sql statement
             ResultSet resultset = sql(statement);
 
-            int pop = 0;
-
             while (resultset.next()) {
-                pop = resultset.getInt(1);
+                System.out.println(where + ": " + resultset.getInt(1));
             }
-            return pop;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get population.");
-            return 0;
         }
     }
 
@@ -201,9 +188,7 @@ public class App
             ResultSet resultset = sql(statement);
 
             while (resultset.next()) {
-                System.out.println(resultset.getString(1));
-                System.out.println(resultset.getString(2));
-                System.out.println(resultset.getString(3));
+                System.out.println(resultset.getString(1) + " " + resultset.getString(2) + " " + resultset.getString(3));
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
