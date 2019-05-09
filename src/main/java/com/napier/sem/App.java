@@ -33,16 +33,15 @@ public class App
 
 
     @RequestMapping("getCities")
-    public ArrayList<city> getCities(@RequestParam(value = "id") String id ) {
+    public ArrayList<city> getCities(@RequestParam(value = "where") String where ) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT city.Name, city.District, city.CountryCode, city.Population ");
             stmnt.append("FROM city JOIN country ON city.CountryCode = country.Code");
-
-                stmnt.append(" WHERE city.ID =");
-                stmnt.append(id);
-
-
+            if (!where.isEmpty()) {
+                stmnt.append(" WHERE ");
+                stmnt.append(where);
+            }
             stmnt.append(" ORDER BY city.Population DESC");
 
             String statement = stmnt.toString();
@@ -70,21 +69,17 @@ public class App
         }
     }
 
-    public ArrayList<country> getCountries(int n, String where) {
+    @RequestMapping("getCountries")
+    public ArrayList<country> getCountries(@RequestParam(value = "where") String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT Code, Name, Continent, Region, Population, Capital");
-            stmnt.append("FROM country ");
+            stmnt.append("FROM country");
             if (!where.isEmpty()) {
-                stmnt.append("WHERE ");
+                stmnt.append(" WHERE ");
                 stmnt.append(where);
             }
             stmnt.append(" ORDER BY Population DESC");
-
-            if (n != 0) {
-                stmnt.append(" LIMIT ");
-                stmnt.append(n);
-            }
 
             String statement = stmnt.toString();
 
@@ -110,8 +105,9 @@ public class App
             return null;
         }
     }
+
     @RequestMapping("showPop")
-    public void showPopulations(@RequestParam(value = "id") String where) {
+    public ArrayList<populationDataCities> showPopulations(@RequestParam(value = "where") String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT SUM(country.Population), SUM(city.Population), SUM(country.Population)-SUM(city.Population) ");
@@ -125,53 +121,33 @@ public class App
             // execute the sql statement
             ResultSet resultset = sql(statement);
 
+            ArrayList<populationDataCities> popData = new ArrayList<>();
+
             while(resultset.next()) {
-                System.out.println(resultset.getInt(1) + " " + resultset.getInt(2) + " " + resultset.getInt(3));
+                populationDataCities item = new populationDataCities();
+                item.setPopTotal(resultset.getInt(1));
+                item.setPopIn(resultset.getInt(2));
+                item.setPopOut(resultset.getInt(3));
+                popData.add(item);
             }
+            return popData;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get population information.");
+            return null;
         }
     }
 
-    public int getPopulation(String type, String where) {
+    @RequestMapping("getPopulationCountry")
+    public ArrayList<populationData> getPopulationCountry(@RequestParam(value = "where") String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
-            if (type.equalsIgnoreCase("World")){
-                stmnt.append("SELECT SUM(Population) FROM country");
-            }
-            else if (type.equalsIgnoreCase("Continent") || type.equalsIgnoreCase("Region") || type.equalsIgnoreCase("Country"))
-            {
-                stmnt.append("SELECT SUM(Population) FROM country ");
-                if (type.equalsIgnoreCase("Continent")) {
-                    stmnt.append("WHERE Continent = '");
-                    stmnt.append(where);
-                    stmnt.append("'");
-                }
-                if (type.equalsIgnoreCase("Region")) {
-                    stmnt.append("WHERE Region = '");
-                    stmnt.append(where);
-                    stmnt.append("'");
-                }
-                if (type.equalsIgnoreCase("Country")) {
-                    stmnt.append("WHERE Name = '");
-                    stmnt.append(where);
-                    stmnt.append("'");
-                }
-            }
-            else if (type.equalsIgnoreCase("District") || type.equalsIgnoreCase("City"))
-            {
-                stmnt.append("SELECT SUM(Population) FROM city ");
-                if (type.equalsIgnoreCase("District")) {
-                    stmnt.append("WHERE District = '");
-                    stmnt.append(where);
-                    stmnt.append("'");
-                }
-                if (type.equalsIgnoreCase("City")) {
-                    stmnt.append("WHERE Name = '");
-                    stmnt.append(where);
-                    stmnt.append("'");
-                }
+
+            stmnt.append("SELECT SUM(Population) FROM country");
+
+            if (!where.isEmpty()){
+                stmnt.append(" WHERE ");
+                stmnt.append(where);
             }
 
             String statement = stmnt.toString();
@@ -179,39 +155,81 @@ public class App
             // execute the sql statement
             ResultSet resultset = sql(statement);
 
-            int pop = 0;
+            ArrayList<populationData> popData = new ArrayList<>();
 
             while (resultset.next()) {
-                pop = resultset.getInt(1);
+                populationData item = new populationData();
+                item.setPop(resultset.getInt(1));
+                popData.add(item);
             }
-            return pop;
+            return popData;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get population.");
-            return 0;
+            return null;
         }
     }
 
-    public void getLanguageData(String language) {
+    @RequestMapping("getPopulationCity")
+    public ArrayList<populationData> getPopulationCity(@RequestParam(value = "where") String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
-            stmnt.append("SELECT Language, SUM(Population)/Percentage, Percentage");
-            stmnt.append(" FROM countrylanguage JOIN country ON CountryCode = Code");
-            stmnt.append("WHERE Language = '");
-            stmnt.append(language);
-            stmnt.append("' ORDER BY Percentage");
+
+            stmnt.append("SELECT SUM(Population) FROM city");
+
+            if (!where.isEmpty()){
+                stmnt.append(" WHERE ");
+                stmnt.append(where);
+            }
 
             String statement = stmnt.toString();
 
             // execute the sql statement
             ResultSet resultset = sql(statement);
 
+            ArrayList<populationData> popData = new ArrayList<>();
+
             while (resultset.next()) {
-                System.out.println(resultset.getString(1) + " " + resultset.getString(2) + " " + resultset.getString(3));
+                populationData item = new populationData();
+                item.setPop(resultset.getInt(1));
+                popData.add(item);
             }
+            return popData;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get population with city data.");
+            return null;
+        }
+    }
+
+    @RequestMapping("getLanguageData")
+    public ArrayList<languageData> getLanguageData() {
+        try {
+            StringBuilder stmnt = new StringBuilder();
+            stmnt.append("SELECT Language, SUM(Population)/Percentage, Percentage");
+            stmnt.append(" FROM countrylanguage JOIN country ON CountryCode = Code ");
+            stmnt.append("WHERE Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')");
+            stmnt.append(" GROUP BY Language, Percentage ORDER BY Percentage");
+
+            String statement = stmnt.toString();
+
+            // execute the sql statement
+            ResultSet resultset = sql(statement);
+
+            ArrayList<languageData> langData = new ArrayList<>();
+
+            while (resultset.next()) {
+                languageData item = new languageData();
+                item.setPlaceName(resultset.getString(1));
+                item.setPopNum(resultset.getInt(2));
+                item.setPercentage(resultset.getFloat(3));
+                langData.add(item);
+            }
+            return langData;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get language data.");
+            return null;
         }
     }
 
