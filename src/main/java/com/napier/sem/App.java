@@ -39,9 +39,9 @@ public class App
             stmnt.append("SELECT city.Name, city.District, city.CountryCode, city.Population ");
             stmnt.append("FROM city JOIN country ON city.CountryCode = country.Code");
             if (id != 0) {
-                stmnt.append(" WHERE city.ID = '");
+                stmnt.append(" WHERE city.ID =");
                 stmnt.append(id);
-                stmnt.append("'");
+                
             }
             stmnt.append(" ORDER BY city.Population DESC");
 
