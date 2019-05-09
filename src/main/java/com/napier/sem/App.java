@@ -1,39 +1,85 @@
 package com.napier.sem;
-import java.util.ArrayList;
-import java.sql.*;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.sql.*;
+import java.util.ArrayList;
+
+@SpringBootApplication
+@RestController
 public class App
 {
     // Create variable to store connection.
-    private Connection con = null;
+    private static Connection con = null;
 
     public static void main(String[] args)
     {
-        // Create new Application
-        App a = new App();
-
         // Connect to database
-        a.connect("localhost:33060");
+        if (args.length < 1)
+        {
+            connect("localhost:33060");
+        }
+        else
+        {
+            connect(args[0]);
+        }
 
-        String where = "";
-        int n = 0;
-
-        a.getCities(n, where);
-
-        // Disconnect from database
-        a.disconnect();
+        SpringApplication.run(App.class, args);
     }
 
-    public void getCities(int n, String where) {
+
+    @RequestMapping("getCities")
+    public ArrayList<city> getCities(@RequestParam(value = "id") int id ) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT city.Name, city.District, city.CountryCode, city.Population ");
             stmnt.append("FROM city JOIN country ON city.CountryCode = country.Code");
-            if (!where.isEmpty()) {
-                stmnt.append(" WHERE ");
-                stmnt.append(where);
+            if (id != 0) {
+                stmnt.append(" WHERE city.ID = '");
+                stmnt.append(id);
+                stmnt.append("'");
             }
             stmnt.append(" ORDER BY city.Population DESC");
+
+            String statement = stmnt.toString();
+
+            // execute the sql statement
+            ResultSet resultset = sql(statement);
+
+            ArrayList<city> cities = new ArrayList<>();
+
+            while (resultset.next()) {
+                city c = new city();
+                c.setName(resultset.getString("city.Name"));
+                c.setCountryCode(resultset.getString("city.CountryCode"));
+                c.setDistrict(resultset.getString("city.District"));
+                c.setPopulation(resultset.getInt("city.Population"));
+                System.out.println(c.getName() + " " + c.getCountryCode() + " " + c.getDistrict() + " " + c.getPopulation());
+                cities.add(c);
+
+            }
+            return cities;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get cities");
+            return null;
+        }
+    }
+
+    public ArrayList<country> getCountries(int n, String where) {
+        try {
+            StringBuilder stmnt = new StringBuilder();
+            stmnt.append("SELECT Code, Name, Continent, Region, Population, Capital");
+            stmnt.append("FROM country ");
+            if (!where.isEmpty()) {
+                stmnt.append("WHERE ");
+                stmnt.append(where);
+            }
+            stmnt.append(" ORDER BY Population DESC");
 
             if (n != 0) {
                 stmnt.append(" LIMIT ");
@@ -45,40 +91,7 @@ public class App
             // execute the sql statement
             ResultSet resultset = sql(statement);
 
-            while (resultset.next()) {
-                city c = new city();
-                c.setName(resultset.getString("city.Name"));
-                c.setCountryCode(resultset.getString("city.CountryCode"));
-                c.setDistrict(resultset.getString("city.District"));
-                c.setPopulation(resultset.getInt("city.Population"));
-                System.out.println(c.getName() + " " + c.getCountryCode() + " " + c.getDistrict() + " " + c.getPopulation());
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get cities");
-        }
-    }
-
-    public void getCountries(int n, String where) {
-        try {
-            StringBuilder stmnt = new StringBuilder();
-            stmnt.append("SELECT Code, Name, Continent, Region, Population, Capital");
-            stmnt.append("FROM country ");
-            if (!where.isEmpty()) {
-                stmnt.append("WHERE ");
-                stmnt.append(where);
-            }
-            stmnt.append(" ORDER BY Population DESC ");
-
-            if (n != 0) {
-                stmnt.append("LIMIT ");
-                stmnt.append(n);
-            }
-
-            String statement = stmnt.toString();
-
-            // execute the sql statement
-            ResultSet resultset = sql(statement);
+            ArrayList<country> countries = new ArrayList<>();
 
             while (resultset.next()) {
                 country c = new country();
@@ -88,15 +101,17 @@ public class App
                 c.setRegion(resultset.getString("Region"));
                 c.setPopulation(resultset.getInt("Population"));
                 c.setCapital(resultset.getInt("Capital"));
-                System.out.println(c.getCode() + " " + c.getName() + " " + c.getContinent() + " " + c.getRegion() + " " + c.getPopulation() + " Capital Code:" + c.getCapital());
+                countries.add(c);
             }
+            return countries;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries.");
+            return null;
         }
     }
-
-    public void showPopulations(String where) {
+    @RequestMapping("showPop")
+    public void showPopulations(@RequestParam(value = "id") String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT SUM(country.Population), SUM(city.Population), SUM(country.Population)-SUM(city.Population) ");
@@ -119,7 +134,7 @@ public class App
         }
     }
 
-    public void getPopulation(String type, String where) {
+    public int getPopulation(String type, String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
             if (type.equalsIgnoreCase("World")){
@@ -164,12 +179,16 @@ public class App
             // execute the sql statement
             ResultSet resultset = sql(statement);
 
+            int pop = 0;
+
             while (resultset.next()) {
-                System.out.println(where + ": " + resultset.getInt(1));
+                pop = resultset.getInt(1);
             }
+            return pop;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get population.");
+            return 0;
         }
     }
 
@@ -213,7 +232,7 @@ public class App
         }
     }
 
-    public void connect(String location)
+    public static void connect(String location)
     {
         try
         {
@@ -259,7 +278,7 @@ public class App
     }
 
 
-    public void disconnect()
+    public static void disconnect()
     {
         // Checks a connection is present.
         if (con != null)
