@@ -25,7 +25,7 @@ public class AppIntegrationTest
 
         int n = 0;
 
-        app.getCities(n, where);
+        //app.getCities(n, where);
 
         System.out.println(" ");
     }
@@ -37,7 +37,7 @@ public class AppIntegrationTest
 
         int n = 10;
 
-        app.getCities(n, where);
+        //app.getCities(n, where);
 
         System.out.println(" ");
     }
@@ -48,7 +48,7 @@ public class AppIntegrationTest
         String typenull = "";
         String wherenull = "";
 
-        app.getPopulation(typenull, wherenull);
+        //app.getPopulation(typenull, wherenull);
 
         System.out.println(" ");
     }
@@ -59,7 +59,7 @@ public class AppIntegrationTest
         String type = "City";
         String where = "Kabul";
 
-        app.getPopulation(type, where);
+        //app.getPopulation(type, where);
 
         System.out.println(" ");
     }
@@ -71,7 +71,7 @@ public class AppIntegrationTest
         String type = "City";
         String where = "jsjdhghdjsd";
 
-        app.getPopulation(type, where);
+        //app.getPopulation(type, where);
 
         System.out.println(" ");
     }
@@ -83,7 +83,7 @@ public class AppIntegrationTest
         String type = "Country";
         String where = "France";
 
-        app.getPopulation(type, where);
+        //app.getPopulation(type, where);
 
         System.out.println(" ");
     }
@@ -94,7 +94,7 @@ public class AppIntegrationTest
         String type = "Country";
         String where = "12345678dhds";
 
-        app.getPopulation(type, where);
+        //app.getPopulation(type, where);
 
         System.out.println(" ");
     }
@@ -105,7 +105,7 @@ public class AppIntegrationTest
         String type = "xxxxxxx";
         String where = "France";
 
-        app.getPopulation(type, where);
+        //app.getPopulation(type, where);
 
         System.out.println(" ");
     }
