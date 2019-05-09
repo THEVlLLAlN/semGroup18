@@ -33,7 +33,7 @@ public class App
 
 
     @RequestMapping("getCities")
-    public void getCities(@RequestParam(value = "id") int n , @RequestParam(value = "where") String where) {
+    public ArrayList<city> getCities(@RequestParam(value = "id") int n , @RequestParam(value = "where") String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT city.Name, city.District, city.CountryCode, city.Population ");
@@ -64,12 +64,17 @@ public class App
                 c.setPopulation(resultset.getInt("city.Population"));
                 System.out.println(c.getName() + " " + c.getCountryCode() + " " + c.getDistrict() + " " + c.getPopulation());
                 cities.add(c);
+
             }
+            return cities;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get cities");
+            return null;
         }
+
     }
+
 
     public ArrayList<country> getCountries(int n, String where) {
         try {
