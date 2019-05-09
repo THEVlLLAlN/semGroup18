@@ -33,7 +33,7 @@ public class App
 
 
     @RequestMapping("getCities")
-    public ArrayList<city> getCities(@RequestParam(value = "id") String where ) {
+    public ArrayList<city> getCities(@RequestParam(value = "where") String where ) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT city.Name, city.District, city.CountryCode, city.Population ");
@@ -70,7 +70,7 @@ public class App
     }
 
     @RequestMapping("getCountries")
-    public ArrayList<country> getCountries(@RequestParam(value = "id") String where) {
+    public ArrayList<country> getCountries(@RequestParam(value = "where") String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT Code, Name, Continent, Region, Population, Capital");
@@ -107,7 +107,7 @@ public class App
     }
 
     @RequestMapping("showPop")
-    public ArrayList<populationDataCities> showPopulations(@RequestParam(value = "id") String where) {
+    public ArrayList<populationDataCities> showPopulations(@RequestParam(value = "where") String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT SUM(country.Population), SUM(city.Population), SUM(country.Population)-SUM(city.Population) ");
@@ -138,7 +138,8 @@ public class App
         }
     }
 
-    public ArrayList<populationData> getPopulationCountry(String where) {
+    @RequestMapping("getPopulationCountry")
+    public ArrayList<populationData> getPopulationCountry(@RequestParam(value = "where") String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
 
@@ -169,7 +170,8 @@ public class App
         }
     }
 
-    public ArrayList<populationData> getPopulationCity(String where) {
+    @RequestMapping("getPopulationCity")
+    public ArrayList<populationData> getPopulationCity(@RequestParam(value = "where") String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
 
@@ -200,7 +202,8 @@ public class App
         }
     }
 
-    public ArrayList<languageData>  getLanguageData() {
+    @RequestMapping("getLanguageData")
+    public ArrayList<languageData> getLanguageData() {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT Language, SUM(Population)/Percentage, Percentage");
