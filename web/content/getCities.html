@@ -32,7 +32,7 @@
     var id = urlParams.get('id');
     var where = urlParams.get ('where');
 
-    var URL = "http://" + window.location.hostname + "/app/getCities?id=" + id + "?where='" + where + "'";
+    var URL = "http://" + window.location.hostname + "/app/getCities?id=" + id + "&where=" + where;
 
     $.getJSON(URL, function(data) {
         // EXTRACT VALUE FOR HTML HEADER.
