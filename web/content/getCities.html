@@ -30,9 +30,9 @@
 </body>
 <script>
     var urlParams = new URLSearchParams(window.location.search);
-    var id = urlParams.get('where');
+    var id = urlParams.get('id');
 
-    var URL = "http://" + window.location.hostname + "/app/getCities?where=" + where;
+    var URL = "http://" + window.location.hostname + "/app/getCities?id=" + id;
 
     $.getJSON(URL, function(data) {
         // EXTRACT VALUE FOR HTML HEADER.

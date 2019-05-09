@@ -33,15 +33,16 @@ public class App
 
 
     @RequestMapping("getCities")
-    public ArrayList<city> getCities(@RequestParam(value = "where") String where ) {
+    public ArrayList<city> getCities(@RequestParam(value = "id") String id ) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT city.Name, city.District, city.CountryCode, city.Population ");
             stmnt.append("FROM city JOIN country ON city.CountryCode = country.Code");
-            if (!where.isEmpty()) {
-                stmnt.append(" WHERE ");
-                stmnt.append(where);
-            }
+
+            stmnt.append(" WHERE ");
+            stmnt.append(id);
+
+
             stmnt.append(" ORDER BY city.Population DESC");
 
             String statement = stmnt.toString();
