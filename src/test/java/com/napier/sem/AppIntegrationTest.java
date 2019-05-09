@@ -25,7 +25,7 @@ public class AppIntegrationTest
 
         int n = 0;
 
-        app.getCities(n, where);
+        //app.getCities(n, where);
 
         System.out.println(" ");
     }
@@ -37,7 +37,7 @@ public class AppIntegrationTest
 
         int n = 10;
 
-        app.getCities(n, where);
+        //app.getCities(n, where);
 
         System.out.println(" ");
     }
