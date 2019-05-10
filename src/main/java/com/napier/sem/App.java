@@ -33,14 +33,19 @@ public class App
 
 
     @RequestMapping("getCities")
-    public ArrayList<city> getCities(@RequestParam(value = "where") String where ) {
+    public ArrayList<city> getCities(@RequestParam(value = "where") String where, @RequestParam(value = "limit") String limit ) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT city.Name, city.District, city.CountryCode, city.Population ");
             stmnt.append("FROM city JOIN country ON city.CountryCode = country.Code");
-            if (!where.isEmpty()) {
+            if (!where.equalsIgnoreCase("World")) {
                 stmnt.append(" WHERE ");
                 stmnt.append(where);
+            }
+            int n = Integer.parseInt(limit);
+            if(n < 0)  {
+                stmnt.append(" LIMIT ");
+                stmnt.append(n);
             }
             stmnt.append(" ORDER BY city.Population DESC");
 
@@ -70,14 +75,19 @@ public class App
     }
 
     @RequestMapping("getCountries")
-    public ArrayList<country> getCountries(@RequestParam(value = "where") String where) {
+    public ArrayList<country> getCountries(@RequestParam(value = "where") String where, @RequestParam(value = "limit") String limit) {
         try {
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT Code, Name, Continent, Region, Population, Capital");
             stmnt.append("FROM country");
-            if (!where.isEmpty()) {
+            if (!where.equalsIgnoreCase("World")) {
                 stmnt.append(" WHERE ");
                 stmnt.append(where);
+            }
+            int n = Integer.parseInt(limit);
+            if(n < 0)  {
+                stmnt.append(" LIMIT ");
+                stmnt.append(n);
             }
             stmnt.append(" ORDER BY Population DESC");
 
@@ -112,8 +122,10 @@ public class App
             StringBuilder stmnt = new StringBuilder();
             stmnt.append("SELECT SUM(country.Population), SUM(city.Population), SUM(country.Population)-SUM(city.Population) ");
             stmnt.append("FROM country JOIN city ON country.Code = city.CountryCode ");
-            stmnt.append("WHERE ");
-            stmnt.append(where);
+            if (!where.equalsIgnoreCase("World")) {
+                stmnt.append(" WHERE ");
+                stmnt.append(where);
+            }
             stmnt.append(" ORDER BY SUM(country.Population)");
 
             String statement = stmnt.toString();
@@ -145,7 +157,7 @@ public class App
 
             stmnt.append("SELECT SUM(Population) FROM country");
 
-            if (!where.isEmpty()){
+            if (!where.equalsIgnoreCase("World")) {
                 stmnt.append(" WHERE ");
                 stmnt.append(where);
             }
@@ -175,11 +187,11 @@ public class App
         try {
             StringBuilder stmnt = new StringBuilder();
 
-            stmnt.append("SELECT SUM(Population) FROM city");
-
-            if (!where.isEmpty()){
-                stmnt.append(" WHERE ");
+            if (!where.equalsIgnoreCase("World")) {
+                stmnt.append("SELECT SUM(Population) FROM city WHERE ");
                 stmnt.append(where);
+            }else{
+                stmnt.append("SELECT SUM(Population) FROM country");
             }
 
             String statement = stmnt.toString();
