@@ -21,11 +21,11 @@ public class AppIntegrationTest
     @Test
     void testGetCities() {
         System.out.println("TEST GET CITIES");
-        String where = "";
+        String where = "country.Continent = 'Asia'";
 
-        int n = 0;
+        String n = "0";
 
-        //app.getCities(n, where);
+        app.getCities(where, n);
 
         System.out.println(" ");
     }
@@ -33,11 +33,35 @@ public class AppIntegrationTest
     @Test
     void testGetCitiesLimited() {
         System.out.println("TEST GET CITIES WITH LIMIT");
-        String where = "";
+        String where = "World";
 
-        int n = 10;
+        String n = "10";
 
-        //app.getCities(n, where);
+        app.getCities(where, n);
+
+        System.out.println(" ");
+    }
+
+    @Test
+    void testGetCountries() {
+        System.out.println("TEST GET COUNTRIES");
+        String where = "country.Continent = 'Asia'";
+
+        String n = "0";
+
+        app.getCities(where, n);
+
+        System.out.println(" ");
+    }
+
+    @Test
+    void testGetCountriesLimited() {
+        System.out.println("TEST GET COUNTRIES WITH LIMIT");
+        String where = "World";
+
+        String n = "10";
+
+        app.getCities(where, n);
 
         System.out.println(" ");
     }

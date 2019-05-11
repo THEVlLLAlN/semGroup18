@@ -232,7 +232,7 @@ public class App
 
             while (resultset.next()) {
                 languageData item = new languageData();
-                item.setPlaceName(resultset.getString(1));
+                item.setLanguageName(resultset.getString(1));
                 item.setPopNum(resultset.getInt(2));
                 item.setPercentage(resultset.getFloat(3));
                 langData.add(item);
