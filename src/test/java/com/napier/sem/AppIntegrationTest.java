@@ -49,7 +49,7 @@ public class AppIntegrationTest
 
         String n = "0";
 
-        app.getCities(where, n);
+        app.getCountries(where, n);
 
         System.out.println(" ");
     }
@@ -61,7 +61,7 @@ public class AppIntegrationTest
 
         String n = "10";
 
-        app.getCities(where, n);
+        app.getCountries(where, n);
 
         System.out.println(" ");
     }
