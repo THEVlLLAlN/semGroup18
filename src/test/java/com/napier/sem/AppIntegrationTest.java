@@ -67,12 +67,11 @@ public class AppIntegrationTest
     }
 
     @Test
-    void populationTestNull(){
-        System.out.println("TEST GET POPULATION NULL");
-        String typenull = "";
-        String wherenull = "";
+    void populationTestWorld(){
+        System.out.println("TEST GET WORLD POPULATION");
+        String where = "";
 
-        //app.getPopulation(typenull, wherenull);
+        app.getPopulationCountry(where);
 
         System.out.println(" ");
     }
@@ -80,10 +79,9 @@ public class AppIntegrationTest
     @Test
     void populationTestCity(){
         System.out.println("TEST GET POPULATION - CITY");
-        String type = "City";
         String where = "Kabul";
 
-        //app.getPopulation(type, where);
+        app.getPopulationCity(where);
 
         System.out.println(" ");
     }
@@ -92,10 +90,9 @@ public class AppIntegrationTest
     @Test
     void populationTestInvalidCity(){
         System.out.println("TEST GET POPULATION - INVALID CITY");
-        String type = "City";
         String where = "jsjdhghdjsd";
 
-        //app.getPopulation(type, where);
+        app.getPopulationCity(where);
 
         System.out.println(" ");
     }
@@ -104,10 +101,9 @@ public class AppIntegrationTest
     @Test
     void populationTestCountry(){
         System.out.println("TEST GET POPULATION - COUNTRY");
-        String type = "Country";
         String where = "France";
 
-        //app.getPopulation(type, where);
+        app.getPopulationCountry(where);
 
         System.out.println(" ");
     }
@@ -115,22 +111,30 @@ public class AppIntegrationTest
     @Test
     void populationTestInvalidCountry(){
         System.out.println("TEST GET POPULATION - INVALID COUNTRY");
-        String type = "Country";
         String where = "12345678dhds";
 
-        //app.getPopulation(type, where);
+        app.getPopulationCountry(where);
 
         System.out.println(" ");
     }
 
     @Test
-    void populationTestInvalidType(){
-        System.out.println("TEST GET POPULATION - INVALID TYPE");
-        String type = "xxxxxxx";
-        String where = "France";
+    void populationInOutCities(){
+        System.out.println("TEST GET POPULATION IN AND OUT OF CITIES");
+        String where = "country.Continent = 'Asia'";
 
-        //app.getPopulation(type, where);
+        app.showPopulations(where);
 
         System.out.println(" ");
     }
+    
+    @Test
+    void languagesTest(){
+        System.out.println("TEST GET LANGUAGE DATA");
+
+        app.getLanguageData();
+
+        System.out.println(" ");
+    }
+
 }
