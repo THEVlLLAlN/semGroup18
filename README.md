@@ -34,8 +34,7 @@ Release - [![Releases](https://img.shields.io/github/release/THEVlLLAlN/semGroup
 |  20 |  The top N populated capital cities in the world where N is provided by the user. |Yes   | <img src="https://i.gyazo.com/776d7888c5384b09d729d53dfcb03f0b.png">  |
 |  21 | The top N populated capital cities in a continent where N is provided by the user. | Yes  |<img src="https://i.gyazo.com/b0409da3804f88ecd65f2d8e83cebb84.png">   |
 | 22  | The top N populated capital cities in a region where N is provided by the user. | Yes  | <img src="https://i.gyazo.com/a71b984c1630e1c66c5f7d5a77abe4a3.png">  |
-|  23 | The population of people, people living in cities, and people not living in cities in each continent.
-  |  Yes |   |
+|  23 | The population of people, people living in cities, and people not living in cities in each continent. |  Yes |   |
 |  24 | The population of people, people living in cities, and people not living in cities in each region.
   |   |   |
 |  25 | The population of people, people living in cities, and people not living in cities in each country.
