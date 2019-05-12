@@ -42,12 +42,12 @@ Release - [![Releases](https://img.shields.io/github/release/THEVlLLAlN/semGroup
   |   |   |
 |  25 | The population of people, people living in cities, and people not living in cities in each country.
   |   |   |
-|  26 | The population of the world.  |   |   |
-|  27 | The population of a continent.  |   |   |
-|  28 | The population of a region.  |   |   |
-|  29 | The population of a country.  |   |   |
-|  30 | The population of a district.  |   |   |
-|  31 |  The population of a city. |   |   |
+|  26 | The population of the world.  |  Yes | <img src="https://i.gyazo.com/43090fee3c5861a842118a772c816913.png">  |
+|  27 | The population of a continent.  |   Yes| <img src="https://i.gyazo.com/89c17982e87ff458ef0976291d8e0962.png">  |
+|  28 | The population of a region.  | Yes  |  <img src="https://i.gyazo.com/8ebb0a89a48c5a92746b648739bd65ec.png"> |
+|  29 | The population of a country.  | Yes  | <img src="https://i.gyazo.com/f7548cd3867ca97b872f91238067dd21.png">  |
+|  30 | The population of a district.  | Yes  |  <img src="https://i.gyazo.com/5e41dbf586e472c94c1e196fed5ffeca.png"> |
+|  31 |  The population of a city. |  Yes |<img src="https://i.gyazo.com/6973442bce54128f251203ca0605fec7.png"> |
 |  32   |the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population Hindi | | |
 |  33   |the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population Chinese | | |
 |  34   |the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population English | | |
