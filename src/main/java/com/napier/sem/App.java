@@ -109,7 +109,7 @@ public class App
                 stmnt.append(n);
             }
             // Add order by condition to sql statement.
-            stmnt.append(" ORDER BY Population DESC");
+            stmnt.append(" ORDER BY country.Population DESC");
 
             // Convert string builder to string.
             String statement = stmnt.toString();
@@ -167,9 +167,9 @@ public class App
             // Look at next set of result data.
             while(resultset.next()) {
                 populationDataCities item = new populationDataCities();
-                item.setPopTotal(resultset.getInt(1));
-                item.setPopIn(resultset.getInt(2));
-                item.setPopOut(resultset.getInt(3));
+                item.setPopTotal(resultset.getInt("SUM(country.Population)"));
+                item.setPopIn(resultset.getInt("SUM(city.Population)"));
+                item.setPopOut(resultset.getInt("SUM(country.Population)-SUM(city.Population)"));
                 popData.add(item);
             }
             return popData;
@@ -262,7 +262,7 @@ public class App
             stmnt.append("SELECT Language, SUM(Population)/Percentage, Percentage");
             stmnt.append(" FROM countrylanguage JOIN country ON CountryCode = Code ");
             stmnt.append("WHERE Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')");
-            stmnt.append(" GROUP BY Language, Percentage ORDER BY Percentage");
+            stmnt.append(" GROUP BY Language ORDER BY Percentage DESC");
 
             // Convert string builder to string.
             String statement = stmnt.toString();
