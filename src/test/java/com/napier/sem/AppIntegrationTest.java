@@ -242,9 +242,29 @@ public class AppIntegrationTest
     }
 
     @Test
-    void populationInOutCities(){
-        System.out.println("TEST GET POPULATION IN AND OUT OF CITIES");
+    void populationInOutCitiesWorld(){
+        System.out.println("TEST GET POPULATION IN AND OUT OF CITIES - WORLD");
         String where = "world";
+
+        ArrayList<populationDataCities> arrayList = app.showPopulations(where);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            populationDataCities c = arrayList.get(counter);
+            String string = "Population Total: " + c.getPopTotal() + " In Cities: " + c.getPopIn() + " Out of Cities: " + c.getPopOut();
+            System.out.println(string);
+            counter++;
+        }
+
+
+        System.out.println(" ");
+    }
+
+    @Test
+    void populationInOutCities(){
+        System.out.println("TEST GET POPULATION IN AND OUT OF CITIES - FRANCE");
+        String where = "country.Name = 'France'";
 
         ArrayList<populationDataCities> arrayList = app.showPopulations(where);
 

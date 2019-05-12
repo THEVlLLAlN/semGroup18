@@ -159,8 +159,8 @@ public class App
             StringBuilder stmnt2 = new StringBuilder();
 
             // Get total population.
-            stmnt1.append("SELECT SUM(country.Population)");
-            stmnt1.append("FROM city JOIN country ON city.CountryCode = country.Code");
+            stmnt1.append("SELECT SUM(Population)");
+            stmnt1.append("FROM country");
             // If where conditions are present add to sql statement.
             if (!where.equalsIgnoreCase("World")) {
                 stmnt1.append(" WHERE ");
