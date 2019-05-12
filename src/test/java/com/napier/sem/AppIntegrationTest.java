@@ -244,7 +244,7 @@ public class AppIntegrationTest
     @Test
     void populationInOutCities(){
         System.out.println("TEST GET POPULATION IN AND OUT OF CITIES");
-        String where = "world";
+        String where = "country.Name = 'France'";
 
         ArrayList<populationDataCities> arrayList = app.showPopulations(where);
 
