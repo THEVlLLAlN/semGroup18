@@ -150,7 +150,7 @@ public class App
             StringBuilder stmnt = new StringBuilder();
             // Add sql text.
             stmnt.append("SELECT SUM(country.Population), SUM(city.Population), SUM(country.Population)-SUM(city.Population) ");
-            stmnt.append("FROM country JOIN city ON country.Code = city.CountryCode ");
+            stmnt.append("FROM city JOIN country ON city.CountryCode = country.Code");
             // If where conditions are present add to sql statement.
             if (!where.equalsIgnoreCase("World")) {
                 stmnt.append(" WHERE ");
@@ -264,7 +264,7 @@ public class App
             stmnt.append("SELECT Language, SUM(Population), AVG(Percentage)");
             stmnt.append(" FROM countrylanguage JOIN country ON CountryCode = Code ");
             stmnt.append("WHERE Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')");
-            stmnt.append(" GROUP BY Language ORDER BY Percentage DESC");
+            stmnt.append(" GROUP BY Language ORDER BY AVG(Percentage) DESC");
 
             // Convert string builder to string.
             String statement = stmnt.toString();
