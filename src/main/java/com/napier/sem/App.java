@@ -170,6 +170,7 @@ public class App
             // Get total population in cities.
             stmnt2.append("SELECT SUM(city.Population)");
             stmnt2.append("FROM city JOIN country ON city.CountryCode = country.Code");
+            
             // If where conditions are present add to sql statement.
             if (!where.equalsIgnoreCase("World")) {
                 stmnt2.append(" WHERE ");
