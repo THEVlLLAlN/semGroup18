@@ -45,6 +45,10 @@ public class App
                 stmnt.append(" WHERE ");
                 stmnt.append(where);
             }
+
+            // Add order by condition to sql statement.
+            stmnt.append(" ORDER BY city.Population DESC");
+
             // Convert string parameter to int.
             int n = Integer.parseInt(limit);
             // If limiter is present add to sql statement.
@@ -52,8 +56,6 @@ public class App
                 stmnt.append(" LIMIT ");
                 stmnt.append(n);
             }
-            // Add order by condition to sql statement.
-            stmnt.append(" ORDER BY city.Population DESC");
 
             // Convert string builder to string.
             String statement = stmnt.toString();
@@ -101,6 +103,10 @@ public class App
                 stmnt.append(" WHERE ");
                 stmnt.append(where);
             }
+
+            // Add order by condition to sql statement.
+            stmnt.append(" ORDER BY country.Population DESC");
+
             // Convert string parameter to int.
             int n = Integer.parseInt(limit);
             // If limiter is present add to sql statement.
@@ -108,8 +114,6 @@ public class App
                 stmnt.append(" LIMIT ");
                 stmnt.append(n);
             }
-            // Add order by condition to sql statement.
-            stmnt.append(" ORDER BY country.Population DESC");
 
             // Convert string builder to string.
             String statement = stmnt.toString();
@@ -205,7 +209,7 @@ public class App
             // Look at next set of result data.
             while (resultset.next()) {
                 populationData item = new populationData();
-                item.setPop(resultset.getInt(1));
+                item.setPop(resultset.getLong(1));
                 popData.add(item);
             }
             return popData;
@@ -242,7 +246,7 @@ public class App
             // Look at next set of result data.
             while (resultset.next()) {
                 populationData item = new populationData();
-                item.setPop(resultset.getInt(1));
+                item.setPop(resultset.getLong(1));
                 popData.add(item);
             }
             return popData;
