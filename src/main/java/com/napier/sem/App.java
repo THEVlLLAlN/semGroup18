@@ -90,6 +90,8 @@ public class App
         }
     }
 
+
+
     @RequestMapping("getCountries")
     public ArrayList<country> getCountries(@RequestParam(value = "where") String where, @RequestParam(value = "limit") String limit) {
         try {
@@ -126,19 +128,25 @@ public class App
 
             // Look at next set of result data.
             while (resultset.next()) {
+                // Create new country variable.
                 country c = new country();
+                // Add data to new country variable.
                 c.setCode(resultset.getString("Code"));
                 c.setName(resultset.getString("Name"));
                 c.setContinent(resultset.getString("Continent"));
                 c.setRegion(resultset.getString("Region"));
                 c.setPopulation(resultset.getInt("Population"));
                 c.setCapital(resultset.getInt("Capital"));
+                // Add new country variable to array list of results.
                 countries.add(c);
             }
+            // Return array list with results.
             return countries;
         } catch (Exception e) {
+            // Print error message.
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries.");
+            // Return to satisfy method.
             return null;
         }
     }
@@ -147,37 +155,71 @@ public class App
     public ArrayList<populationDataCities> showPopulations(@RequestParam(value = "where") String where) {
         try {
             // Create string builder to hold sql statement.
-            StringBuilder stmnt = new StringBuilder();
-            // Add sql text.
-            stmnt.append("SELECT SUM(country.Population), SUM(city.Population), SUM(country.Population)-SUM(city.Population) ");
-            stmnt.append("FROM city JOIN country ON city.CountryCode = country.Code");
+            StringBuilder stmnt1 = new StringBuilder();
+            StringBuilder stmnt2 = new StringBuilder();
+
+            // Get total population.
+            stmnt1.append("SELECT SUM(Population)");
+            stmnt1.append("FROM country");
             // If where conditions are present add to sql statement.
             if (!where.equalsIgnoreCase("World")) {
-                stmnt.append(" WHERE ");
-                stmnt.append(where);
+                stmnt1.append(" WHERE ");
+                stmnt1.append(where);
+            }
+
+            // Get total population in cities.
+            stmnt2.append("SELECT SUM(city.Population)");
+            stmnt2.append("FROM city JOIN country ON city.CountryCode = country.Code");
+            // If where conditions are present add to sql statement.
+            if (!where.equalsIgnoreCase("World")) {
+                stmnt2.append(" WHERE ");
+                stmnt2.append(where);
             }
 
             // Convert string builder to string.
-            String statement = stmnt.toString();
+            String statement1 = stmnt1.toString();
+            String statement2 = stmnt2.toString();
 
             // Execute the sql statement.
-            ResultSet resultset = sql(statement);
+            ResultSet resultset1 = sql(statement1);
+            ResultSet resultset2 = sql(statement2);
+
+            // Create int variables to store return data
+            long var1 = 0;
+            long var2 = 0;
 
             // Create array list to store results.
             ArrayList<populationDataCities> popData = new ArrayList<>();
 
             // Look at next set of result data.
-            while(resultset.next()) {
-                populationDataCities item = new populationDataCities();
-                item.setPopTotal(resultset.getLong(1));
-                item.setPopIn(resultset.getLong(2));
-                item.setPopOut(resultset.getLong(3));
-                popData.add(item);
+            while(resultset1.next()) {
+                var1 = resultset1.getLong(1);
             }
+            while(resultset2.next()) {
+                var2 = resultset2.getLong(1);
+            }
+
+            // Create new data variable.
+            populationDataCities item = new populationDataCities();
+
+            // Add data to variable.
+            item.setPopTotal(var1);
+            item.setPopIn(var2);
+
+            // Calculate population outside of cities.
+            long var3 = var1 - var2;
+            item.setPopOut(var3);
+
+            // Add data item to array list of results.
+            popData.add(item);
+
+            // Return array list with results.
             return popData;
         } catch (Exception e) {
+            // Print error message.
             System.out.println(e.getMessage());
             System.out.println("Failed to get population information.");
+            // Return to satisfy method.
             return null;
         }
     }
@@ -206,14 +248,20 @@ public class App
 
             // Look at next set of result data.
             while (resultset.next()) {
+                // Create new data variable.
                 populationData item = new populationData();
+                // Add data to variable.
                 item.setPop(resultset.getLong(1));
+                // Add data item to array list of results.
                 popData.add(item);
             }
+            // Return array list with results.
             return popData;
         } catch (Exception e) {
+            // Print error message.
             System.out.println(e.getMessage());
             System.out.println("Failed to get population.");
+            // Return to satisfy method.
             return null;
         }
     }
@@ -243,14 +291,20 @@ public class App
 
             // Look at next set of result data.
             while (resultset.next()) {
+                // Create new data variable.
                 populationData item = new populationData();
+                // Add data to variable.
                 item.setPop(resultset.getLong(1));
+                // Add data item to array list of results.
                 popData.add(item);
             }
+            // Return array list with results.
             return popData;
         } catch (Exception e) {
+            // Print error message.
             System.out.println(e.getMessage());
             System.out.println("Failed to get population with city data.");
+            // Return to satisfy method.
             return null;
         }
     }
@@ -277,16 +331,22 @@ public class App
 
             // Look at next set of result data.
             while (resultset.next()) {
+                // Create new data variable.
                 languageData item = new languageData();
+                // Add data to variable.
                 item.setLanguageName(resultset.getString(1));
                 item.setPopNum(resultset.getLong(2));
                 item.setPercentage(resultset.getFloat(3));
+                // Add data item to array list of results.
                 langData.add(item);
             }
+            // Return array list with results.
             return langData;
         } catch (Exception e) {
+            // Print error message.
             System.out.println(e.getMessage());
             System.out.println("Failed to get language data.");
+            // Return to satisfy method.
             return null;
         }
     }

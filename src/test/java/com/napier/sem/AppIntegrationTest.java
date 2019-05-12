@@ -40,6 +40,48 @@ public class AppIntegrationTest
     }
 
     @Test
+    void testGetCapitalCities() {
+        System.out.println("TEST GET CAPITAL CITIES");
+        String where = "country.Capital = city.ID";
+
+        String n = "0";
+
+        ArrayList<city> arrayList = app.getCities(where, n);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            city c = arrayList.get(counter);
+            String string = c.getName() + " " + c.getCountryCode();
+            System.out.println(string);
+            counter++;
+        }
+
+        System.out.println(" ");
+    }
+
+    @Test
+    void testGetCapitalCitiesLimited() {
+        System.out.println("TEST GET CAPITAL CITIES WITH LIMIT");
+        String where = "country.Capital = city.ID";
+
+        String n = "10";
+
+        ArrayList<city> arrayList = app.getCities(where, n);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            city c = arrayList.get(counter);
+            String string = c.getName() + " " + c.getCountryCode();
+            System.out.println(string);
+            counter++;
+        }
+
+        System.out.println(" ");
+    }
+
+    @Test
     void testGetCitiesLimited() {
         System.out.println("TEST GET CITIES WITH LIMIT");
         String where = "World";
@@ -200,9 +242,29 @@ public class AppIntegrationTest
     }
 
     @Test
+    void populationInOutCitiesWorld(){
+        System.out.println("TEST GET POPULATION IN AND OUT OF CITIES - WORLD");
+        String where = "world";
+
+        ArrayList<populationDataCities> arrayList = app.showPopulations(where);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            populationDataCities c = arrayList.get(counter);
+            String string = "Population Total: " + c.getPopTotal() + " In Cities: " + c.getPopIn() + " Out of Cities: " + c.getPopOut();
+            System.out.println(string);
+            counter++;
+        }
+
+
+        System.out.println(" ");
+    }
+
+    @Test
     void populationInOutCities(){
-        System.out.println("TEST GET POPULATION IN AND OUT OF CITIES");
-        String where = "country.Continent = 'Asia'";
+        System.out.println("TEST GET POPULATION IN AND OUT OF CITIES - FRANCE");
+        String where = "country.Name = 'France'";
 
         ArrayList<populationDataCities> arrayList = app.showPopulations(where);
 
