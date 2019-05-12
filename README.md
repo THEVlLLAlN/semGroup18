@@ -38,9 +38,9 @@ Release - [![Releases](https://img.shields.io/github/release/THEVlLLAlN/semGroup
 |  21 | The top N populated capital cities in a continent where N is provided by the user. | Yes  |<img src="https://i.gyazo.com/b0409da3804f88ecd65f2d8e83cebb84.png">   |
 | 22  | The top N populated capital cities in a region where N is provided by the user. | Yes  | <img src="https://i.gyazo.com/a71b984c1630e1c66c5f7d5a77abe4a3.png">  |
 |  23 | The population of people, people living in cities, and people not living in cities in each continent. |  Yes |  <img src="https://i.gyazo.com/8fad0678bc5a85d14f82da50c8a5796b.png"> |
-|  24 | The population of people, people living in cities, and people not living in cities in each region.
+  24 | The population of people, people living in cities, and people not living in cities in each region.
   |  Yes |  <img src="https://i.gyazo.com/ab8349137895177315217fe938ae4694.png"> |
-|  25 | The population of people, people living in cities, and people not living in cities in each country.
+ 25 | The population of people, people living in cities, and people not living in cities in each country.
   | Yes  | <img src="https://i.gyazo.com/5bfe32dbdb7ab10bbbadc0aad982d978.png">  |
 |  26 | The population of the world.  |  Yes | <img src="https://i.gyazo.com/43090fee3c5861a842118a772c816913.png">  |
 |  27 | The population of a continent.  |   Yes| <img src="https://i.gyazo.com/89c17982e87ff458ef0976291d8e0962.png">  |
