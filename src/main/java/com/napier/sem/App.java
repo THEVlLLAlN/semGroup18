@@ -166,9 +166,6 @@ public class App
                 stmnt.append(where);
             }
 
-            // Add group by condition to sql statement.
-            stmnt.append(" GROUP BY country.Population");
-
             // Convert string builder to string.
             String statement = stmnt.toString();
 
