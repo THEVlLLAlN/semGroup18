@@ -19,10 +19,10 @@ Release - [![Releases](https://img.shields.io/github/release/THEVlLLAlN/semGroup
 |  5 |The top N populated countries in a continent where N is provided by the user    |  Yes |  <img src="https://i.gyazo.com/93eb8d3fb4c71b1d2e13cc20669fe308.png"> |
 |  6 |  The top N populated countries in a region where N is provided by the user  | Yes  | <img src="https://i.gyazo.com/c184b505dedd624cfb397dcabeee1e45.png"> |
 | 7  | All the cities in the world organised by largest population to smallest.  |  Yes | <img src="https://i.gyazo.com/daa72a783c688b2ee549a4e6bb8925fd.png">  |
-|  8 |   All the cities in a continent organised by largest population to smallest.| Yes  |  https://i.gyazo.com/113bcd214c3d627ed4fed5f122002c87.png |
-|   9|  All the cities in a region organised by largest population to smallest. |  Yes |https://i.gyazo.com/4772ec6b49cfd28d71f400f5e2b8758d.png   |
-|   10| All the cities in a country organised by largest population to smallest.  | Yes  | https://i.gyazo.com/2cd2e45ea7710b5a7607d162951d4d9d.png  |
-|   11|  All the cities in a district organised by largest population to smallest. | Yes  |   |
+|  8 |   All the cities in a continent organised by largest population to smallest.| Yes  | <img src= "https://i.gyazo.com/113bcd214c3d627ed4fed5f122002c87.png"> |
+|   9|  All the cities in a region organised by largest population to smallest. |  Yes |<img src="https://i.gyazo.com/4772ec6b49cfd28d71f400f5e2b8758d.png">  |
+|   10| All the cities in a country organised by largest population to smallest.  | Yes  | <img src="https://i.gyazo.com/2cd2e45ea7710b5a7607d162951d4d9d.png">  |
+|   11|  All the cities in a district organised by largest population to smallest. | Yes  |  <img src="https://i.gyazo.com/5453d2a1ac44402b24fe07ddbef566d9.png"> |
 |12   | The top N populated cities in the world where N is provided by the user.  |   |   |
 |  13 | The top N populated cities in a continent where N is provided by the user  |   |   |
 |   14|  The top N populated cities in a region where N is provided by the user. |   |   |
