@@ -160,7 +160,7 @@ public class App
             stmnt.append("SELECT SUM(country.Population), SUM(city.Population), SUM(country.Population)-SUM(city.Population) ");
             stmnt.append("FROM city JOIN country ON city.CountryCode = country.Code");
             // If where conditions are present add to sql statement.
-            stmnt.append(" WHERE country.CountryCode = country.Code");
+            stmnt.append(" WHERE country.Code = country.CountryCode");
             if (!where.equalsIgnoreCase("World")) {
                 stmnt.append(" AND ");
                 stmnt.append(where);
