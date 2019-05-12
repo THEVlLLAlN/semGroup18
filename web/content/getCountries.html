@@ -32,8 +32,8 @@
 <script>
     var urlParams = new URLSearchParams(window.location.search);
     var where = urlParams.get('where');
-
-    var URL = "http://" + window.location.hostname + "/app/getCountries?where=" + where;
+    var limit = urlParams.get('limit');
+    var URL = "http://" + window.location.hostname + "/app/getCountries?where=" + where + "&limit=" + limit;
 
     $.getJSON(URL, function(data) {
         // EXTRACT VALUE FOR HTML HEADER.

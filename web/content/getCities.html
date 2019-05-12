@@ -32,7 +32,7 @@
 <script>
     var urlParams = new URLSearchParams(window.location.search);
     var where = urlParams.get('where');
-    var limit = urlParams.get('limit')
+    var limit = urlParams.get('limit');
     var URL = "http://" + window.location.hostname + "/app/getCities?where=" + where + "&limit=" + limit;
 
     $.getJSON(URL, function(data) {
