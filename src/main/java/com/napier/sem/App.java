@@ -96,7 +96,7 @@ public class App
             // Create string builder to hold sql statement.
             StringBuilder stmnt = new StringBuilder();
             // Add sql text.
-            stmnt.append("SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital");
+            stmnt.append("SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital ");
             stmnt.append("FROM country");
             // If where conditions are present add to sql statement.
             if (!where.equalsIgnoreCase("World")) {
@@ -171,9 +171,9 @@ public class App
             // Look at next set of result data.
             while(resultset.next()) {
                 populationDataCities item = new populationDataCities();
-                item.setPopTotal(resultset.getInt("SUM(country.Population)"));
-                item.setPopIn(resultset.getInt("SUM(city.Population)"));
-                item.setPopOut(resultset.getInt("SUM(country.Population)-SUM(city.Population)"));
+                item.setPopTotal(resultset.getInt(1));
+                item.setPopIn(resultset.getInt(2));
+                item.setPopOut(resultset.getInt(3));
                 popData.add(item);
             }
             return popData;
@@ -266,7 +266,7 @@ public class App
             stmnt.append("SELECT Language, SUM(Population)/Percentage, Percentage");
             stmnt.append(" FROM countrylanguage JOIN country ON CountryCode = Code ");
             stmnt.append("WHERE Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')");
-            stmnt.append(" GROUP BY Language ORDER BY Percentage DESC");
+            stmnt.append(" GROUP BY Language, Percentage ORDER BY Percentage DESC");
 
             // Convert string builder to string.
             String statement = stmnt.toString();
