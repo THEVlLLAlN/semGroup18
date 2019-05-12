@@ -156,8 +156,6 @@ public class App
                 stmnt.append(" WHERE ");
                 stmnt.append(where);
             }
-            // Add order by condition to sql statement.
-            stmnt.append(" ORDER BY SUM(country.Population)");
 
             // Convert string builder to string.
             String statement = stmnt.toString();
@@ -263,10 +261,10 @@ public class App
             // Create string builder to hold sql statement.
             StringBuilder stmnt = new StringBuilder();
             // Add sql text.
-            stmnt.append("SELECT Language, SUM(Population), Percentage");
+            stmnt.append("SELECT Language, SUM(Population), AVG(Percentage)");
             stmnt.append(" FROM countrylanguage JOIN country ON CountryCode = Code ");
             stmnt.append("WHERE Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')");
-            stmnt.append(" GROUP BY Language, Percentage ORDER BY Percentage DESC");
+            stmnt.append(" GROUP BY Language ORDER BY Percentage DESC");
 
             // Convert string builder to string.
             String statement = stmnt.toString();
