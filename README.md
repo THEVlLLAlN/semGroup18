@@ -9,7 +9,8 @@ Code Coverage - [![codecov](https://codecov.io/gh/THEVlLLAlN/semGroup18/branch/m
 License - [![LICENSE](https://img.shields.io/github/license/THEVlLLAlN/semGroup18.svg?style=flat-square)](https://github.com/THEVlLLAlN/semGroup18/blob/master/LICENSE)
 <br>
 Release - [![Releases](https://img.shields.io/github/release/THEVlLLAlN/semGroup18/all.svg?style=flat-square)](https://github.com/THEVlLLAlN/semGroup18/releases)
-
+<br>
+22 out of 36 requirements have been met, which is x%
 |  ID | Name  |  Met | Screenshot  |
 |---|---|---|---|
 |  1 | All of the countries in the world organised by largest population to smallest  | Yes  |  <img src="https://i.gyazo.com/e09d9be3dd36afb776663c7d917b3bb4.png"> |
