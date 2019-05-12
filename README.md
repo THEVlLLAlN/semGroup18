@@ -48,9 +48,5 @@ Release - [![Releases](https://img.shields.io/github/release/THEVlLLAlN/semGroup
 |  29 | The population of a country.  | Yes  | <img src="https://i.gyazo.com/f7548cd3867ca97b872f91238067dd21.png">  |
 |  30 | The population of a district.  | Yes  |  <img src="https://i.gyazo.com/5e41dbf586e472c94c1e196fed5ffeca.png"> |
 |  31 |  The population of a city. |  Yes |<img src="https://i.gyazo.com/6973442bce54128f251203ca0605fec7.png"> |
-|  32   |the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population Hindi | | |
-|  33   |the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population Chinese | | |
-|  34   |the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population English | | |
-|  35   |the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population Spanish | | |
-|  36   |the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population Arabic | | |
+|  32   |the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population Hindi, chinese, english, spanish and arabic |Yes |<img src="https://i.gyazo.com/c39ffc89aebd94999eed46a1a2a3ac03.png"> |
 
