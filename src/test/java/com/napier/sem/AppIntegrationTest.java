@@ -40,6 +40,48 @@ public class AppIntegrationTest
     }
 
     @Test
+    void testGetCapitalCities() {
+        System.out.println("TEST GET CAPITAL CITIES");
+        String where = "country.Capital = city.Code";
+
+        String n = "0";
+
+        ArrayList<city> arrayList = app.getCities(where, n);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            city c = arrayList.get(counter);
+            String string = c.getName() + " " + c.getCountryCode();
+            System.out.println(string);
+            counter++;
+        }
+
+        System.out.println(" ");
+    }
+
+    @Test
+    void testGetCapitalCitiesLimited() {
+        System.out.println("TEST GET CAPITAL CITIES WITH LIMIT");
+        String where = "country.Capital = city.Code";
+
+        String n = "10";
+
+        ArrayList<city> arrayList = app.getCities(where, n);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            city c = arrayList.get(counter);
+            String string = c.getName() + " " + c.getCountryCode();
+            System.out.println(string);
+            counter++;
+        }
+
+        System.out.println(" ");
+    }
+
+    @Test
     void testGetCitiesLimited() {
         System.out.println("TEST GET CITIES WITH LIMIT");
         String where = "World";
