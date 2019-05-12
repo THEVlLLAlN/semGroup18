@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Get Data on Cities</title>
+    <title>Get Population Data on Cities</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -33,7 +33,7 @@
     var urlParams = new URLSearchParams(window.location.search);
     var where = urlParams.get('where');
 
-    var URL = "http://" + window.location.hostname + "/app/getCities?where=" + where;
+    var URL = "http://" + window.location.hostname + "/app/getPopulationCity?where=" + where;
 
     $.getJSON(URL, function(data) {
         // EXTRACT VALUE FOR HTML HEADER.

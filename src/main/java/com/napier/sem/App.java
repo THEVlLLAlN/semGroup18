@@ -116,7 +116,7 @@ public class App
         }
     }
 
-    @RequestMapping("showPop")
+    @RequestMapping("showPopulations")
     public ArrayList<populationDataCities> showPopulations(@RequestParam(value = "where") String where) {
         try {
             StringBuilder stmnt = new StringBuilder();
