@@ -10,7 +10,7 @@ License - [![LICENSE](https://img.shields.io/github/license/THEVlLLAlN/semGroup1
 <br>
 Release - [![Releases](https://img.shields.io/github/release/THEVlLLAlN/semGroup18/all.svg?style=flat-square)](https://github.com/THEVlLLAlN/semGroup18/releases)
 <br>
-22 out of 36 requirements have been met, which is x%
+29 out of 32 requirements have been met, which is 90.625%
 <br>
 
 |  ID | Name  |  Met | Screenshot  |
