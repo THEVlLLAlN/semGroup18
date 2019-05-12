@@ -31,10 +31,8 @@ Release - [![Releases](https://img.shields.io/github/release/THEVlLLAlN/semGroup
 |  17 |  All the capital cities in the world organised by largest population to smallest. | Yes  | <img src="https://i.gyazo.com/920dfed2e2bd075f641ea95471d23904.png">  |
 |  18 | All the capital cities in a continent organised by largest population to smallest.  | Yes  | <img src="https://i.gyazo.com/77e84ba3a61545db2cb5a1aa0d8622f8.png">  |
 |  19 |  All the capital cities in a region organised by largest to smallest. | Yes  | <img src="https://i.gyazo.com/b8cd12e0868597b5c83fe596632f8bd9.png">  |
-|  20 |  The top N populated capital cities in the world where N is provided by the user.
- |Yes   | <img src="https://i.gyazo.com/776d7888c5384b09d729d53dfcb03f0b.png">  |
-|  21 | The top N populated capital cities in a continent where N is provided by the user.
-  | Yes  |<img src="   |
+|  20 |  The top N populated capital cities in the world where N is provided by the user. |Yes   | <img src="https://i.gyazo.com/776d7888c5384b09d729d53dfcb03f0b.png">  |
+|  21 | The top N populated capital cities in a continent where N is provided by the user. | Yes  |<img src="   |
 | 22  | The top N populated capital cities in a region where N is provided by the user.
   |   |   |
 |  23 | The population of people, people living in cities, and people not living in cities in each continent.
