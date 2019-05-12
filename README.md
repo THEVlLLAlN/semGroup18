@@ -23,18 +23,18 @@ Release - [![Releases](https://img.shields.io/github/release/THEVlLLAlN/semGroup
 |   9|  All the cities in a region organised by largest population to smallest. |  Yes |<img src="https://i.gyazo.com/4772ec6b49cfd28d71f400f5e2b8758d.png">  |
 |   10| All the cities in a country organised by largest population to smallest.  | Yes  | <img src="https://i.gyazo.com/2cd2e45ea7710b5a7607d162951d4d9d.png">  |
 |   11|  All the cities in a district organised by largest population to smallest. | Yes  |  <img src="https://i.gyazo.com/5453d2a1ac44402b24fe07ddbef566d9.png"> |
-|12   | The top N populated cities in the world where N is provided by the user.  |   |   |
-|  13 | The top N populated cities in a continent where N is provided by the user  |   |   |
-|   14|  The top N populated cities in a region where N is provided by the user. |   |   |
-|  15 |  The top N populated cities in a country where N is provided by the user. |   |   |
-|  16 |  The top N populated cities in a district where N is provided by the user. |   |   |
-|  17 |  All the capital cities in the world organised by largest population to smallest. |   |   |
-|  18 | All the capital cities in a continent organised by largest population to smallest.  |   |   |
-|  19 |  All the capital cities in a region organised by largest to smallest. |   |   |
+|12   | The top N populated cities in the world where N is provided by the user.  |  Yes | <img src="https://i.gyazo.com/53052b48b3e03a9417b62eeee57457a1.png">  |
+|  13 | The top N populated cities in a continent where N is provided by the user  |   Yes| <img src="https://i.gyazo.com/bb940cd7e55b1ac6520a5de93f0fd1ff.png">  |
+|   14|  The top N populated cities in a region where N is provided by the user. | Yes  | <img src="https://i.gyazo.com/aad577544d1f499c545b5beadebf45ae.png">  |
+|  15 |  The top N populated cities in a country where N is provided by the user. | Yes  |  <img src="https://i.gyazo.com/1a0feb5e393f81ff508f703d3d27aaae.png"> |
+|  16 |  The top N populated cities in a district where N is provided by the user. | Yes  |  <img src="https://i.gyazo.com/f19c5bc44abe6bf53ff25c84b42c3f3d.png"> |
+|  17 |  All the capital cities in the world organised by largest population to smallest. | Yes  | <img src="https://i.gyazo.com/920dfed2e2bd075f641ea95471d23904.png">  |
+|  18 | All the capital cities in a continent organised by largest population to smallest.  | Yes  | <img src="https://i.gyazo.com/77e84ba3a61545db2cb5a1aa0d8622f8.png">  |
+|  19 |  All the capital cities in a region organised by largest to smallest. | Yes  | <img src="https://i.gyazo.com/b8cd12e0868597b5c83fe596632f8bd9.png">  |
 |  20 |  The top N populated capital cities in the world where N is provided by the user.
- |   |   |
+ |Yes   | <img src="https://i.gyazo.com/776d7888c5384b09d729d53dfcb03f0b.png">  |
 |  21 | The top N populated capital cities in a continent where N is provided by the user.
-  |   |   |
+  | Yes  |<img src="   |
 | 22  | The top N populated capital cities in a region where N is provided by the user.
   |   |   |
 |  23 | The population of people, people living in cities, and people not living in cities in each continent.
