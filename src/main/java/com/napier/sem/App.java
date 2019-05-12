@@ -196,12 +196,12 @@ public class App
                 var1 = resultset1.getLong(1);
             }
             while(resultset2.next()) {
-                var2 = resultset1.getLong(1);
+                var2 = resultset2.getLong(1);
             }
 
             // Create new data variable.
             populationDataCities item = new populationDataCities();
-            
+
             // Add data to variable.
             item.setPopTotal(var1);
             item.setPopIn(var2);
