@@ -42,7 +42,7 @@ public class AppIntegrationTest
     @Test
     void testGetCapitalCities() {
         System.out.println("TEST GET CAPITAL CITIES");
-        String where = "country.Capital = city.Code";
+        String where = "country.Capital = city.ID";
 
         String n = "0";
 
@@ -63,7 +63,7 @@ public class AppIntegrationTest
     @Test
     void testGetCapitalCitiesLimited() {
         System.out.println("TEST GET CAPITAL CITIES WITH LIMIT");
-        String where = "country.Capital = city.Code";
+        String where = "country.Capital = city.ID";
 
         String n = "10";
 
