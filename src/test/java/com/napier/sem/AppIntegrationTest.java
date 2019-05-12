@@ -277,7 +277,6 @@ public class AppIntegrationTest
             counter++;
         }
 
-
         System.out.println(" ");
     }
 
