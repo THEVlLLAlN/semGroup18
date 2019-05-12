@@ -2,18 +2,18 @@ package com.napier.sem;
 
 public class languageData {
 
-    private String placeName;
+    private String languageName;
 
     private int popNum;
 
     private float percentage;
 
-    public String getPlaceName(){
-        return this.placeName;
+    public String getLanguageName(){
+        return this.languageName;
     }
 
-    public void setPlaceName(String value){
-        this.placeName = value;
+    public void setLanguageName(String value){
+        this.languageName = value;
     }
 
     public int getPopNum(){

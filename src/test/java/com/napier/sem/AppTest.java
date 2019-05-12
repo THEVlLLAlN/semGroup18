@@ -2,9 +2,6 @@ package com.napier.sem;
 import java.sql.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,17 +27,17 @@ public class AppTest {
 
         country countryA = new country();
 
-        countryA.setCode("XD");
-        assertEquals(countryA.getCode(), "XD");
+        countryA.setCode("ABC");
+        assertEquals(countryA.getCode(), "ABC");
 
-        countryA.setName("Jon Callahan");
-        assertEquals(countryA.getName(), "Jon Callahan");
+        countryA.setName("CountryName");
+        assertEquals(countryA.getName(), "CountryName");
 
-        countryA.setContinent("Irozan");
-        assertEquals(countryA.getContinent(), "Irozan");
+        countryA.setContinent("Asia");
+        assertEquals(countryA.getContinent(), "Asia");
 
-        countryA.setRegion("asujas");
-        assertEquals(countryA.getRegion(), "asujas");
+        countryA.setRegion("RegionName");
+        assertEquals(countryA.getRegion(), "RegionName");
 
         countryA.setIndepYear(2012);
         assertEquals(countryA.getIndepYear(), 2012);
@@ -51,8 +48,8 @@ public class AppTest {
         countryA.setPopulation(450000);
         assertEquals(countryA.getPopulation(), 450000);
 
-        countryA.setLifeExpectancy(12345);
-        assertEquals(countryA.getLifeExpectancy(), 12345);
+        countryA.setLifeExpectancy(100);
+        assertEquals(countryA.getLifeExpectancy(), 100);
 
         countryA.setGNP(12345);
         assertEquals(countryA.getGNP(), 12345);
@@ -60,41 +57,37 @@ public class AppTest {
         countryA.setGNPOld(12345);
         assertEquals(countryA.getGNPOld(), 12345);
 
-        countryA.setLocalName("ASDf");
-        assertEquals(countryA.getLocalName(), "ASDf");
+        countryA.setLocalName("OurCountry");
+        assertEquals(countryA.getLocalName(), "OurCountry");
 
         countryA.setGovernmentForm("Democracy");
         assertEquals(countryA.getGovernmentForm(), "Democracy");
 
-        countryA.setHeadOfState("Dr Eggman");
-        assertEquals(countryA.getHeadOfState(), "Dr Eggman");
+        countryA.setHeadOfState("Mr President");
+        assertEquals(countryA.getHeadOfState(), "Mr President");
 
         countryA.setCapital(123);
         assertEquals(countryA.getCapital(), 123);
 
-        countryA.setCode2("Uwu");
-        assertEquals(countryA.getCode2(), "Uwu");
-
+        countryA.setCode2("CBA");
+        assertEquals(countryA.getCode2(), "CBA");
     }
 
     @Test
     void countrylanguageTest() {
         countrylanguage countrylanguageA = new countrylanguage();
 
-        countrylanguageA.setCountryCode("Dr Eggman");
-        assertEquals(countrylanguageA.getCountryCode(), "Dr Eggman");
+        countrylanguageA.setCountryCode("ABC");
+        assertEquals(countrylanguageA.getCountryCode(), "ABC");
 
-        countrylanguageA.setLanguage("Eggish");
-        assertEquals(countrylanguageA.getLanguage(), "Eggish");
+        countrylanguageA.setLanguage("Gibberish");
+        assertEquals(countrylanguageA.getLanguage(), "Gibberish");
 
-        countrylanguageA.setIsOfficial('E');
-        assertEquals(countrylanguageA.getIsOfficial(), 'E');
+        countrylanguageA.setIsOfficial('T');
+        assertEquals(countrylanguageA.getIsOfficial(), 'T');
 
         countrylanguageA.setPercentage(100);
         assertEquals(countrylanguageA.getPercentage(), 100);
-
-
-
     }
 
 
@@ -108,8 +101,8 @@ public class AppTest {
         cityA.setName("Coolsville");
         assertEquals(cityA.getName(), "Coolsville");
 
-        cityA.setCountryCode("boop!");
-        assertEquals(cityA.getCountryCode(), "boop!");
+        cityA.setCountryCode("ABC");
+        assertEquals(cityA.getCountryCode(), "ABC");
 
         cityA.setDistrict("East end");
         assertEquals(cityA.getDistrict(), "East end");
@@ -118,8 +111,40 @@ public class AppTest {
         assertEquals(cityA.getPopulation(), 123456789);
     }
 
+    @Test
+    void languageDataTest(){
+        languageData language = new languageData();
 
+        language.setLanguageName("English");
+        assertEquals(language.getLanguageName(), "English");
 
+        language.setPopNum(1000);
+        assertEquals(language.getPopNum(), 1000);
 
+        language.setPercentage(100);
+        assertEquals(language.getPercentage(), 100);
+    }
+
+    @Test
+    void populationDataTest(){
+        populationData popData = new populationData();
+
+        popData.setPop(100);
+        assertEquals(popData.getPop(), 100);
+    }
+
+    @Test
+    void populationDataCitiesTest(){
+        populationDataCities popDataC = new populationDataCities();
+
+        popDataC.setPopTotal(1000);
+        assertEquals(popDataC.getPopTotal(), 1000);
+
+        popDataC.setPopOut(400);
+        assertEquals(popDataC.getPopOut(), 400);
+
+        popDataC.setPopIn(600);
+        assertEquals(popDataC.getPopIn(), 600);
+    }
 
 }

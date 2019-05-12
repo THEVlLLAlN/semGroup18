@@ -133,7 +133,6 @@ public class AppIntegrationTest
         System.out.println("TEST GET LANGUAGE DATA");
 
         app.getLanguageData();
-
         System.out.println(" ");
     }
 
