@@ -25,7 +25,16 @@ public class AppIntegrationTest
 
         String n = "0";
 
-        app.getCities(where, n);
+        ArrayList<city> arrayList = app.getCities(where, n);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            city c = arrayList.get(counter);
+            String string = c.getName() + " " + c.getCountryCode();
+            System.out.println(string);
+            counter++;
+        }
 
         System.out.println(" ");
     }
@@ -37,7 +46,16 @@ public class AppIntegrationTest
 
         String n = "10";
 
-        app.getCities(where, n);
+        ArrayList<city> arrayList = app.getCities(where, n);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            city CityA = arrayList.get(counter);
+            String city_string = CityA.getName() + " " + CityA.getCountryCode();
+            System.out.println(city_string);
+            counter++;
+        }
 
         System.out.println(" ");
     }
@@ -49,7 +67,16 @@ public class AppIntegrationTest
 
         String n = "0";
 
-        app.getCountries(where, n);
+        ArrayList<country> arrayList = app.getCountries(where, n);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            country c = arrayList.get(counter);
+            String string = c.getName() + " " + c.getCode();
+            System.out.println(string);
+            counter++;
+        }
 
         System.out.println(" ");
     }
@@ -61,7 +88,16 @@ public class AppIntegrationTest
 
         String n = "10";
 
-        app.getCountries(where, n);
+        ArrayList<country> arrayList = app.getCountries(where, n);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            country c = arrayList.get(counter);
+            String string = c.getName() + " " + c.getCode();
+            System.out.println(string);
+            counter++;
+        }
 
         System.out.println(" ");
     }
@@ -71,7 +107,16 @@ public class AppIntegrationTest
         System.out.println("TEST GET WORLD POPULATION");
         String where = "";
 
-        app.getPopulationCountry(where);
+        ArrayList<populationData> arrayList = app.getPopulationCountry(where);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            populationData c = arrayList.get(counter);
+            String string = "Population: " + c.getPop();
+            System.out.println(string);
+            counter++;
+        }
 
         System.out.println(" ");
     }
@@ -79,9 +124,18 @@ public class AppIntegrationTest
     @Test
     void populationTestCity(){
         System.out.println("TEST GET POPULATION - CITY");
-        String where = "Kabul";
+        String where = "city.Name = 'Kabul'";
 
-        app.getPopulationCity(where);
+        ArrayList<populationData> arrayList = app.getPopulationCity(where);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            populationData c = arrayList.get(counter);
+            String string = "Population: " + c.getPop();
+            System.out.println(string);
+            counter++;
+        }
 
         System.out.println(" ");
     }
@@ -90,9 +144,18 @@ public class AppIntegrationTest
     @Test
     void populationTestInvalidCity(){
         System.out.println("TEST GET POPULATION - INVALID CITY");
-        String where = "jsjdhghdjsd";
+        String where = "city.Name = 'jsjdhghdjsd'";
 
-        app.getPopulationCity(where);
+        ArrayList<populationData> arrayList = app.getPopulationCity(where);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            populationData c = arrayList.get(counter);
+            String string = "Population: " + c.getPop();
+            System.out.println(string);
+            counter++;
+        }
 
         System.out.println(" ");
     }
@@ -101,9 +164,18 @@ public class AppIntegrationTest
     @Test
     void populationTestCountry(){
         System.out.println("TEST GET POPULATION - COUNTRY");
-        String where = "France";
+        String where = "country.Name = 'France'";
 
-        app.getPopulationCountry(where);
+        ArrayList<populationData> arrayList = app.getPopulationCountry(where);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            populationData c = arrayList.get(counter);
+            String string = "Population: " + c.getPop();
+            System.out.println(string);
+            counter++;
+        }
 
         System.out.println(" ");
     }
@@ -111,9 +183,18 @@ public class AppIntegrationTest
     @Test
     void populationTestInvalidCountry(){
         System.out.println("TEST GET POPULATION - INVALID COUNTRY");
-        String where = "12345678dhds";
+        String where = "country.Name = '12345678dhds'";
 
-        app.getPopulationCountry(where);
+        ArrayList<populationData> arrayList = app.getPopulationCountry(where);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            populationData c = arrayList.get(counter);
+            String string = "Population: " + c.getPop();
+            System.out.println(string);
+            counter++;
+        }
 
         System.out.println(" ");
     }
@@ -123,7 +204,17 @@ public class AppIntegrationTest
         System.out.println("TEST GET POPULATION IN AND OUT OF CITIES");
         String where = "country.Continent = 'Asia'";
 
-        app.showPopulations(where);
+        ArrayList<populationDataCities> arrayList = app.showPopulations(where);
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            populationDataCities c = arrayList.get(counter);
+            String string = "Population Total: " + c.getPopTotal() + " In Cities: " + c.getPopIn() + " Out of Cities: " + c.getPopOut();
+            System.out.println(string);
+            counter++;
+        }
+
 
         System.out.println(" ");
     }
@@ -132,7 +223,17 @@ public class AppIntegrationTest
     void languagesTest(){
         System.out.println("TEST GET LANGUAGE DATA");
 
-        app.getLanguageData();
+        ArrayList<languageData> arrayList = app.getLanguageData();
+
+        int counter = 0;
+
+        while (counter < arrayList.size()){
+            languageData c = arrayList.get(counter);
+            String string = c.getLanguageName() + " No of Speakers: " + c.getPopNum() + " Percentage: " + c.getPercentage();
+            System.out.println(string);
+            counter++;
+        }
+
         System.out.println(" ");
     }
 

@@ -18,7 +18,7 @@ public class App
 
     public static void main(String[] args)
     {
-        // Connect to database
+        // Connect to database.
         if (args.length < 1)
         {
             connect("localhost:33060");
@@ -27,7 +27,7 @@ public class App
         {
             connect(args[0]);
         }
-
+        // Run app.
         SpringApplication.run(App.class, args);
     }
 
@@ -35,41 +35,55 @@ public class App
     @RequestMapping("getCities")
     public ArrayList<city> getCities(@RequestParam(value = "where") String where, @RequestParam(value = "limit") String limit ) {
         try {
+            // Create string builder to hold sql statement.
             StringBuilder stmnt = new StringBuilder();
+            // Add sql text.
             stmnt.append("SELECT city.Name, city.District, city.CountryCode, city.Population ");
             stmnt.append("FROM city JOIN country ON city.CountryCode = country.Code");
+            // If where conditions are present add to sql statement.
             if (!where.equalsIgnoreCase("World")) {
                 stmnt.append(" WHERE ");
                 stmnt.append(where);
             }
+            // Convert string parameter to int.
             int n = Integer.parseInt(limit);
-            if(n < 0)  {
+            // If limiter is present add to sql statement.
+            if(n > 0)  {
                 stmnt.append(" LIMIT ");
                 stmnt.append(n);
             }
+            // Add order by condition to sql statement.
             stmnt.append(" ORDER BY city.Population DESC");
 
+            // Convert string builder to string.
             String statement = stmnt.toString();
 
-            // execute the sql statement
+            // Execute the sql statement
             ResultSet resultset = sql(statement);
 
+            // Create array list to store results.
             ArrayList<city> cities = new ArrayList<>();
 
+            // Look at next set of result data.
             while (resultset.next()) {
+                // Create new city variable.
                 city c = new city();
+                // Add data to new city variable.
                 c.setName(resultset.getString("city.Name"));
                 c.setCountryCode(resultset.getString("city.CountryCode"));
                 c.setDistrict(resultset.getString("city.District"));
                 c.setPopulation(resultset.getInt("city.Population"));
-                System.out.println(c.getName() + " " + c.getCountryCode() + " " + c.getDistrict() + " " + c.getPopulation());
+                // Add new city variable to array list of results.
                 cities.add(c);
 
             }
+            // Return array list with results.
             return cities;
         } catch (Exception e) {
+            // Print error message.
             System.out.println(e.getMessage());
             System.out.println("Failed to get cities");
+            // Return to satisfy method.
             return null;
         }
     }
@@ -77,27 +91,36 @@ public class App
     @RequestMapping("getCountries")
     public ArrayList<country> getCountries(@RequestParam(value = "where") String where, @RequestParam(value = "limit") String limit) {
         try {
+            // Create string builder to hold sql statement.
             StringBuilder stmnt = new StringBuilder();
-            stmnt.append("SELECT Code, Name, Continent, Region, Population, Capital");
+            // Add sql text.
+            stmnt.append("SELECT country.Code, country.Name, country.Continent, country.Region, country.Population, country.Capital");
             stmnt.append("FROM country");
+            // If where conditions are present add to sql statement.
             if (!where.equalsIgnoreCase("World")) {
                 stmnt.append(" WHERE ");
                 stmnt.append(where);
             }
+            // Convert string parameter to int.
             int n = Integer.parseInt(limit);
-            if(n < 0)  {
+            // If limiter is present add to sql statement.
+            if(n > 0)  {
                 stmnt.append(" LIMIT ");
                 stmnt.append(n);
             }
+            // Add order by condition to sql statement.
             stmnt.append(" ORDER BY Population DESC");
 
+            // Convert string builder to string.
             String statement = stmnt.toString();
 
-            // execute the sql statement
+            // Execute the sql statement.
             ResultSet resultset = sql(statement);
 
+            // Create array list to store results.
             ArrayList<country> countries = new ArrayList<>();
 
+            // Look at next set of result data.
             while (resultset.next()) {
                 country c = new country();
                 c.setCode(resultset.getString("Code"));
@@ -119,22 +142,29 @@ public class App
     @RequestMapping("showPopulations")
     public ArrayList<populationDataCities> showPopulations(@RequestParam(value = "where") String where) {
         try {
+            // Create string builder to hold sql statement.
             StringBuilder stmnt = new StringBuilder();
+            // Add sql text.
             stmnt.append("SELECT SUM(country.Population), SUM(city.Population), SUM(country.Population)-SUM(city.Population) ");
             stmnt.append("FROM country JOIN city ON country.Code = city.CountryCode ");
+            // If where conditions are present add to sql statement.
             if (!where.equalsIgnoreCase("World")) {
                 stmnt.append(" WHERE ");
                 stmnt.append(where);
             }
+            // Add order by condition to sql statement.
             stmnt.append(" ORDER BY SUM(country.Population)");
 
+            // Convert string builder to string.
             String statement = stmnt.toString();
 
-            // execute the sql statement
+            // Execute the sql statement.
             ResultSet resultset = sql(statement);
 
+            // Create array list to store results.
             ArrayList<populationDataCities> popData = new ArrayList<>();
 
+            // Look at next set of result data.
             while(resultset.next()) {
                 populationDataCities item = new populationDataCities();
                 item.setPopTotal(resultset.getInt(1));
@@ -153,22 +183,26 @@ public class App
     @RequestMapping("getPopulationCountry")
     public ArrayList<populationData> getPopulationCountry(@RequestParam(value = "where") String where) {
         try {
+            // Create string builder to hold sql statement.
             StringBuilder stmnt = new StringBuilder();
-
+            // Add sql text.
             stmnt.append("SELECT SUM(Population) FROM country");
-
+            // If where conditions are present add to sql statement.
             if (!where.equalsIgnoreCase("World")) {
                 stmnt.append(" WHERE ");
                 stmnt.append(where);
             }
 
+            // Convert string builder to string.
             String statement = stmnt.toString();
 
-            // execute the sql statement
+            // Execute the sql statement.
             ResultSet resultset = sql(statement);
 
+            // Create array list to store results.
             ArrayList<populationData> popData = new ArrayList<>();
 
+            // Look at next set of result data.
             while (resultset.next()) {
                 populationData item = new populationData();
                 item.setPop(resultset.getInt(1));
@@ -185,8 +219,10 @@ public class App
     @RequestMapping("getPopulationCity")
     public ArrayList<populationData> getPopulationCity(@RequestParam(value = "where") String where) {
         try {
+            // Create string builder to hold sql statement.
             StringBuilder stmnt = new StringBuilder();
-
+            // If where conditions are present add to sql statement.
+            // Else add sql text.
             if (!where.equalsIgnoreCase("World")) {
                 stmnt.append("SELECT SUM(Population) FROM city WHERE ");
                 stmnt.append(where);
@@ -194,13 +230,16 @@ public class App
                 stmnt.append("SELECT SUM(Population) FROM country");
             }
 
+            // Convert string builder to string.
             String statement = stmnt.toString();
 
-            // execute the sql statement
+            // Execute the sql statement.
             ResultSet resultset = sql(statement);
 
+            // Create array list to store results.
             ArrayList<populationData> popData = new ArrayList<>();
 
+            // Look at next set of result data.
             while (resultset.next()) {
                 populationData item = new populationData();
                 item.setPop(resultset.getInt(1));
@@ -217,19 +256,24 @@ public class App
     @RequestMapping("getLanguageData")
     public ArrayList<languageData> getLanguageData() {
         try {
+            // Create string builder to hold sql statement.
             StringBuilder stmnt = new StringBuilder();
+            // Add sql text.
             stmnt.append("SELECT Language, SUM(Population)/Percentage, Percentage");
             stmnt.append(" FROM countrylanguage JOIN country ON CountryCode = Code ");
             stmnt.append("WHERE Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')");
             stmnt.append(" GROUP BY Language, Percentage ORDER BY Percentage");
 
+            // Convert string builder to string.
             String statement = stmnt.toString();
 
-            // execute the sql statement
+            // Execute the sql statement.
             ResultSet resultset = sql(statement);
 
+            // Create array list to store results.
             ArrayList<languageData> langData = new ArrayList<>();
 
+            // Look at next set of result data.
             while (resultset.next()) {
                 languageData item = new languageData();
                 item.setLanguageName(resultset.getString(1));
@@ -248,16 +292,19 @@ public class App
     public ResultSet sql(String statement){
         try
         {
+            // Create sql statement.
             Statement stmnt = con.createStatement();
-
+            // Generate result set with passed in statement.
             ResultSet results = stmnt.executeQuery(statement);
-
+            // Return result set.
             return results;
         }
         catch (Exception e)
         {
+            // Print error messages.
             System.out.println(e.getMessage());
             System.out.println("Statement Creation Failed.");
+            // Return to satisfy method.
             return null;
         }
     }
