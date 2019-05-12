@@ -155,37 +155,64 @@ public class App
     public ArrayList<populationDataCities> showPopulations(@RequestParam(value = "where") String where) {
         try {
             // Create string builder to hold sql statement.
-            StringBuilder stmnt = new StringBuilder();
-            // Add sql text.
-            stmnt.append("SELECT SUM(country.Population), SUM(city.Population), SUM(country.Population)-SUM(city.Population) ");
-            stmnt.append("FROM city JOIN country ON city.CountryCode = country.Code");
+            StringBuilder stmnt1 = new StringBuilder();
+            StringBuilder stmnt2 = new StringBuilder();
+
+            // Get total population.
+            stmnt1.append("SELECT SUM(country.Population)");
+            stmnt1.append("FROM city JOIN country ON city.CountryCode = country.Code");
             // If where conditions are present add to sql statement.
-            stmnt.append(" WHERE country.Code = city.CountryCode");
             if (!where.equalsIgnoreCase("World")) {
-                stmnt.append(" AND ");
-                stmnt.append(where);
+                stmnt1.append(" WHERE ");
+                stmnt1.append(where);
+            }
+
+            // Get total population in cities.
+            stmnt2.append("SELECT SUM(city.Population)");
+            stmnt2.append("FROM city JOIN country ON city.CountryCode = country.Code");
+            // If where conditions are present add to sql statement.
+            if (!where.equalsIgnoreCase("World")) {
+                stmnt2.append(" WHERE ");
+                stmnt2.append(where);
             }
 
             // Convert string builder to string.
-            String statement = stmnt.toString();
+            String statement1 = stmnt1.toString();
+            String statement2 = stmnt2.toString();
 
             // Execute the sql statement.
-            ResultSet resultset = sql(statement);
+            ResultSet resultset1 = sql(statement1);
+            ResultSet resultset2 = sql(statement2);
+
+            // Create int variables to store return data
+            long var1 = 0;
+            long var2 = 0;
 
             // Create array list to store results.
             ArrayList<populationDataCities> popData = new ArrayList<>();
 
             // Look at next set of result data.
-            while(resultset.next()) {
-                // Create new data variable.
-                populationDataCities item = new populationDataCities();
-                // Add data to variable.
-                item.setPopTotal(resultset.getLong(1));
-                item.setPopIn(resultset.getLong(2));
-                item.setPopOut(resultset.getLong(3));
-                // Add data item to array list of results.
-                popData.add(item);
+            while(resultset1.next()) {
+                var1 = resultset1.getLong(1);
             }
+            while(resultset2.next()) {
+                var2 = resultset1.getLong(1);
+            }
+
+            // Create new data variable.
+            populationDataCities item = new populationDataCities();
+            
+            // Add data to variable.
+            item.setPopTotal(var1);
+            item.setPopIn(var2);
+
+            // Calculate population outside of cities.
+            long var3 = var1 - var2;
+            item.setPopOut(var3);
+
+            // Add data item to array list of results.
+            popData.add(item);
+
             // Return array list with results.
             return popData;
         } catch (Exception e) {
