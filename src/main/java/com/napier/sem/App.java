@@ -157,7 +157,7 @@ public class App
             // Create string builder to hold sql statement.
             StringBuilder stmnt = new StringBuilder();
             // Add sql text.
-            stmnt.append("SELECT country.Population, SUM(city.Population), SUM(country.Population)-SUM(city.Population) ");
+            stmnt.append("SELECT SUM(country.Population), SUM(city.Population), SUM(country.Population)-SUM(city.Population) ");
             stmnt.append("FROM city JOIN country ON city.CountryCode = country.Code");
             // If where conditions are present add to sql statement.
             if (!where.equalsIgnoreCase("World")) {
