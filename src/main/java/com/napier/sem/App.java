@@ -171,9 +171,9 @@ public class App
             // Look at next set of result data.
             while(resultset.next()) {
                 populationDataCities item = new populationDataCities();
-                item.setPopTotal(resultset.getInt(1));
-                item.setPopIn(resultset.getInt(2));
-                item.setPopOut(resultset.getInt(3));
+                item.setPopTotal(resultset.getLong(1));
+                item.setPopIn(resultset.getLong(2));
+                item.setPopOut(resultset.getLong(3));
                 popData.add(item);
             }
             return popData;
@@ -263,7 +263,7 @@ public class App
             // Create string builder to hold sql statement.
             StringBuilder stmnt = new StringBuilder();
             // Add sql text.
-            stmnt.append("SELECT Language, SUM(Population)/Percentage, Percentage");
+            stmnt.append("SELECT Language, SUM(Population), Percentage");
             stmnt.append(" FROM countrylanguage JOIN country ON CountryCode = Code ");
             stmnt.append("WHERE Language IN ('Chinese', 'English', 'Hindi', 'Spanish', 'Arabic')");
             stmnt.append(" GROUP BY Language, Percentage ORDER BY Percentage DESC");
@@ -281,7 +281,7 @@ public class App
             while (resultset.next()) {
                 languageData item = new languageData();
                 item.setLanguageName(resultset.getString(1));
-                item.setPopNum(resultset.getInt(2));
+                item.setPopNum(resultset.getLong(2));
                 item.setPercentage(resultset.getFloat(3));
                 langData.add(item);
             }

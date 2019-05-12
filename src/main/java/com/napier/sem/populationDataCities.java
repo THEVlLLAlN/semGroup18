@@ -2,33 +2,33 @@ package com.napier.sem;
 
 public class populationDataCities {
 
-    private int population;
+    private long population;
 
-    private int populationInCities;
+    private long populationInCities;
 
-    private int populationOutsideCities;
+    private long populationOutsideCities;
 
-    public int getPopTotal(){
+    public long getPopTotal(){
         return this.population;
     }
 
-    public void setPopTotal(int value){
+    public void setPopTotal(long value){
         this.population = value;
     }
 
-    public int getPopIn(){
+    public long getPopIn(){
         return this.populationInCities;
     }
 
-    public void setPopIn(int value){
+    public void setPopIn(long value){
         this.populationInCities = value;
     }
 
-    public int getPopOut(){
+    public long getPopOut(){
         return this.populationOutsideCities;
     }
 
-    public void setPopOut(int value){
+    public void setPopOut(long value){
         this.populationOutsideCities = value;
     }
 
