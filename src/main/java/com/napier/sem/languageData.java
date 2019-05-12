@@ -4,7 +4,7 @@ public class languageData {
 
     private String languageName;
 
-    private int popNum;
+    private long popNum;
 
     private float percentage;
 
@@ -16,11 +16,11 @@ public class languageData {
         this.languageName = value;
     }
 
-    public int getPopNum(){
+    public long getPopNum(){
         return this.popNum;
     }
 
-    public void setPopNum(int value){
+    public void setPopNum(long value){
         this.popNum = value;
     }
 

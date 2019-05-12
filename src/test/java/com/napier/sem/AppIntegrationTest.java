@@ -105,7 +105,7 @@ public class AppIntegrationTest
     @Test
     void populationTestWorld(){
         System.out.println("TEST GET WORLD POPULATION");
-        String where = "";
+        String where = "World";
 
         ArrayList<populationData> arrayList = app.getPopulationCountry(where);
 

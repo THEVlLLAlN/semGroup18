@@ -2,13 +2,13 @@ package com.napier.sem;
 
 public class populationData {
 
-    private int populationNum;
+    private long populationNum;
 
-    public int getPop(){
+    public long getPop(){
         return this.populationNum;
     }
 
-    public void setPop(int value){
+    public void setPop(long value){
         this.populationNum = value;
     }
 }
