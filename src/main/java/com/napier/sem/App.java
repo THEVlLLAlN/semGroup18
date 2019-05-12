@@ -128,19 +128,25 @@ public class App
 
             // Look at next set of result data.
             while (resultset.next()) {
+                // Create new country variable.
                 country c = new country();
+                // Add data to new country variable.
                 c.setCode(resultset.getString("Code"));
                 c.setName(resultset.getString("Name"));
                 c.setContinent(resultset.getString("Continent"));
                 c.setRegion(resultset.getString("Region"));
                 c.setPopulation(resultset.getInt("Population"));
                 c.setCapital(resultset.getInt("Capital"));
+                // Add new country variable to array list of results.
                 countries.add(c);
             }
+            // Return array list with results.
             return countries;
         } catch (Exception e) {
+            // Print error message.
             System.out.println(e.getMessage());
             System.out.println("Failed to get countries.");
+            // Return to satisfy method.
             return null;
         }
     }
@@ -152,7 +158,7 @@ public class App
             StringBuilder stmnt = new StringBuilder();
             // Add sql text.
             stmnt.append("SELECT SUM(country.Population), SUM(city.Population), SUM(country.Population)-SUM(city.Population) ");
-            stmnt.append("FROM city LEFT JOIN country ON city.CountryCode = country.Code");
+            stmnt.append("FROM city INNER JOIN country ON city.CountryCode = country.Code");
             // If where conditions are present add to sql statement.
             if (!where.equalsIgnoreCase("World")) {
                 stmnt.append(" WHERE ");
@@ -170,16 +176,22 @@ public class App
 
             // Look at next set of result data.
             while(resultset.next()) {
+                // Create new data variable.
                 populationDataCities item = new populationDataCities();
+                // Add data to variable.
                 item.setPopTotal(resultset.getLong(1));
                 item.setPopIn(resultset.getLong(2));
                 item.setPopOut(resultset.getLong(3));
+                // Add data item to array list of results.
                 popData.add(item);
             }
+            // Return array list with results.
             return popData;
         } catch (Exception e) {
+            // Print error message.
             System.out.println(e.getMessage());
             System.out.println("Failed to get population information.");
+            // Return to satisfy method.
             return null;
         }
     }
@@ -208,14 +220,20 @@ public class App
 
             // Look at next set of result data.
             while (resultset.next()) {
+                // Create new data variable.
                 populationData item = new populationData();
+                // Add data to variable.
                 item.setPop(resultset.getLong(1));
+                // Add data item to array list of results.
                 popData.add(item);
             }
+            // Return array list with results.
             return popData;
         } catch (Exception e) {
+            // Print error message.
             System.out.println(e.getMessage());
             System.out.println("Failed to get population.");
+            // Return to satisfy method.
             return null;
         }
     }
@@ -245,14 +263,20 @@ public class App
 
             // Look at next set of result data.
             while (resultset.next()) {
+                // Create new data variable.
                 populationData item = new populationData();
+                // Add data to variable.
                 item.setPop(resultset.getLong(1));
+                // Add data item to array list of results.
                 popData.add(item);
             }
+            // Return array list with results.
             return popData;
         } catch (Exception e) {
+            // Print error message.
             System.out.println(e.getMessage());
             System.out.println("Failed to get population with city data.");
+            // Return to satisfy method.
             return null;
         }
     }
@@ -279,16 +303,22 @@ public class App
 
             // Look at next set of result data.
             while (resultset.next()) {
+                // Create new data variable.
                 languageData item = new languageData();
+                // Add data to variable.
                 item.setLanguageName(resultset.getString(1));
                 item.setPopNum(resultset.getLong(2));
                 item.setPercentage(resultset.getFloat(3));
+                // Add data item to array list of results.
                 langData.add(item);
             }
+            // Return array list with results.
             return langData;
         } catch (Exception e) {
+            // Print error message.
             System.out.println(e.getMessage());
             System.out.println("Failed to get language data.");
+            // Return to satisfy method.
             return null;
         }
     }
