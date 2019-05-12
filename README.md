@@ -35,14 +35,20 @@ Release - [![Releases](https://img.shields.io/github/release/THEVlLLAlN/semGroup
 |  21 | The top N populated capital cities in a continent where N is provided by the user. | Yes  |<img src="https://i.gyazo.com/b0409da3804f88ecd65f2d8e83cebb84.png">   |
 | 22  | The top N populated capital cities in a region where N is provided by the user. | Yes  | <img src="https://i.gyazo.com/a71b984c1630e1c66c5f7d5a77abe4a3.png">  |
 |  23 | The population of people, people living in cities, and people not living in cities in each continent.
-  |   |   |
+  |  Yes |   |
 |  24 | The population of people, people living in cities, and people not living in cities in each region.
   |   |   |
 |  25 | The population of people, people living in cities, and people not living in cities in each country.
-d  |   |   |
-|  26 |   |   |   |
-|  27 |   |   |   |
-|  28 |   |   |   |
-|  29 |   |   |   |
-|  30 |   |   |   |
-|  31 |   |   |   |
+  |   |   |
+|  26 | The population of the world.  |   |   |
+|  27 | The population of a continent.  |   |   |
+|  28 | The population of a region.  |   |   |
+|  29 | The population of a country.  |   |   |
+|  30 | The population of a district.  |   |   |
+|  31 |  The population of a city. |   |   |
+|  32   |the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population Hindi | | |
+|  33   |the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population Chinese | | |
+|  34   |the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population English | | |
+|  35   |the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population Spanish | | |
+|  36   |the number of people who speak the following the following languages from greatest number to smallest, including the percentage of the world population Arabic | | |
+
